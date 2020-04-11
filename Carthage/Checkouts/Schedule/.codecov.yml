@@ -1,0 +1,6 @@
+ignore:
+  - "Tests/"
+  - "Schedule.playground"
+
+comment:
+  layout: header, changes, diff

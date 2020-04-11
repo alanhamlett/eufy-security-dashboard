@@ -1,0 +1,106 @@
+//
+//  SDFileUtils.swift
+//  SDDownloadManager
+//
+//  Created by Sagar Dagdu on 8/5/17.
+//  Copyright © 2017 Sagar Dagdu. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
+import UIKit
+
+class SDFileUtils: NSObject {
+    
+    // MARK:- Helpers
+    
+    static func moveFile(fromUrl url:URL,
+                         toDirectory directory:String? ,
+                         withName name:String) -> (Bool, Error?, URL?) {
+        var newUrl:URL
+        if let directory = directory {
+            let directoryCreationResult = self.createDirectoryIfNotExists(withName: directory)
+            guard directoryCreationResult.0 else {
+                return (false, directoryCreationResult.1, nil)
+            }
+            newUrl = self.downloadsDirectoryPath().appendingPathComponent(directory).appendingPathComponent(name)
+        } else {
+            newUrl = self.downloadsDirectoryPath().appendingPathComponent(name)
+        }
+        do {
+            try FileManager.default.moveItem(at: url, to: newUrl)
+            return (true, nil, newUrl)
+        } catch {
+            return (false, error, nil)
+        }
+    }
+    
+    static func downloadsDirectoryPath() -> URL {
+        let dirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        return dirURL
+    }
+    
+    static func filePathWith(name: String, folder: String? = nil) -> URL {
+        var path = self.downloadsDirectoryPath()
+        if let folder = folder {
+            path.appendPathComponent(folder)
+        }
+        path.appendPathComponent(name)
+        return path
+    }
+    
+    static func createDirectoryIfNotExists(withName name:String) -> (Bool, Error?)  {
+        let directoryUrl = self.downloadsDirectoryPath().appendingPathComponent(name)
+        if FileManager.default.fileExists(atPath: directoryUrl.path) {
+            return (true, nil)
+        }
+        do {
+            try FileManager.default.createDirectory(at: directoryUrl, withIntermediateDirectories: true, attributes: nil)
+            return (true, nil)
+        } catch  {
+            return (false, error)
+        }
+    }
+    
+    static func fileSize(filePath : String) -> Int64 {
+        guard FileManager.default.fileExists(atPath: filePath) else { return 0 }
+        let fileInfo = try! FileManager.default.attributesOfItem(atPath: filePath)
+        return fileInfo[FileAttributeKey.size] as! Int64
+    }
+    
+    static func removeItem(atPath: String) {
+        guard FileManager.default.fileExists(atPath: atPath) else { return }
+        do {
+            try FileManager.default.removeItem(atPath:atPath )
+        } catch {
+            print(error)
+        }
+    }
+    
+    static func systemFreeSize() -> Int64{
+        do {
+            let attributes = try FileManager.default.attributesOfFileSystem(forPath:  NSHomeDirectory())
+            let freesize = attributes[FileAttributeKey.systemFreeSize] as? Int64
+            
+            return freesize ?? 0
+        } catch  {
+            print(error)
+            return 0
+        }
+    }
+}

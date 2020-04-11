@@ -1,0 +1,11 @@
+.DS_STORE
+/Pods
+*.xcuserdatad*
+*.xccheckout
+/Build/
+/DerivedData/
+*.xcworkspace/xcshareddata/*.xcscmblueprint
+Carthage/Build
+
+.swiftpm
+Podfile.lock
