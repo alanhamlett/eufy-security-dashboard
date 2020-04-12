@@ -25,50 +25,94 @@ class CameraViewController: UIViewController {
     fileprivate var previewView: UIView?
     fileprivate var gestureView: UIView?
     fileprivate var focusView: FocusIndicatorView?
+    
+    fileprivate lazy var itemsScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        scrollView.clipsToBounds = false
+        return scrollView
+    }()
+    
+    fileprivate var itemInputViews: [ItemCameraEditView] = []
 
     fileprivate let recordButton = UIImageView(image: UIImage(named: "record"))
     
     fileprivate lazy var backButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setImage(UIImage(named: "camera_back"), for: .normal)
+        button.setImage(UIImage(named: "camera-back"), for: .normal)
         button.addTarget(self, action: #selector(tappedBack), for: .touchUpInside)
         button.tintColor = .white
         return button
     }()
     
+    fileprivate lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("Cancel", for: .normal)
+        button.addTarget(self, action: #selector(tappedBack), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.roundedFont(ofSize: .headline, weight: .semibold)
+        button.tintColor = .white
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
+        button.layer.shadowRadius = 6
+        return button
+    }()
+    
+    fileprivate lazy var doneButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.setTitle("Done", for: .normal)
+        button.addTarget(self, action: #selector(tappedDone), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.roundedFont(ofSize: .headline, weight: .bold)
+        button.tintColor = .white
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = CGSize(width: 0, height: 1)
+        button.layer.shadowRadius = 6
+        return button
+    }()
+    
+    fileprivate lazy var itemsBadge: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.font = UIFont.roundedFont(ofSize: .caption1, weight: .semibold)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.backgroundColor = UIColor(hex: 0x8660F3)
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowOffset = CGSize(width: 0, height: 2)
+        label.layer.shadowRadius = 4
+        label.layer.cornerRadius = 8.5
+        label.layer.masksToBounds = true
+        return label
+    }()
+    
+    fileprivate lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "New Listing"
+        label.font = UIFont.roundedFont(ofSize: .headline, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOpacity = 0.4
+        label.layer.shadowOffset = CGSize(width: 0, height: 1)
+        label.layer.shadowRadius = 6
+        return label
+    }()
+    
+    fileprivate var gradientView = GradientBackgroundView()
+    
     fileprivate lazy var lightButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setImage(UIImage(named: "flash"), for: .normal)
+        button.setImage(UIImage(named: "flashlight"), for: .normal)
         button.addTarget(self, action: #selector(tappedFlash), for: .touchUpInside)
-        button.tintColor = .white
-        return button
-    }()
-    
-    fileprivate lazy var flipButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "flip"), for: .normal)
-        button.addTarget(self, action: #selector(tappedFlip), for: .touchUpInside)
-        button.tintColor = .white
-        return button
-    }()
-    
-    fileprivate lazy var addButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "plus"), for: .normal)
-        button.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
-        button.tintColor = .white
-        return button
-    }()
-    
-    fileprivate lazy var backspaceButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "backspace"), for: .normal)
-        button.addTarget(self, action: #selector(tappedBackspace), for: .touchUpInside)
         button.tintColor = .white
         return button
     }()
@@ -82,22 +126,14 @@ class CameraViewController: UIViewController {
         return button
     }()
     
-    fileprivate lazy var doneButton: UIButton = {
+    fileprivate lazy var nextButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setImage(UIImage(named: "done"), for: .normal)
-        button.addTarget(self, action: #selector(tappedDone), for: .touchUpInside)
+        button.setImage(UIImage(named: "next-item"), for: .normal)
+        button.setImage(UIImage(named: "next-item-disabled"), for: .disabled)
+        button.addTarget(self, action: #selector(tappedNext), for: .touchUpInside)
         button.tintColor = .white
-        return button
-    }()
-    
-    fileprivate lazy var postButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "post"), for: .normal)
-        button.addTarget(self, action: #selector(tappedPost), for: .touchUpInside)
-        button.tintColor = .white
-        button.isHidden = true
+        button.isEnabled = false
         return button
     }()
 
@@ -133,6 +169,8 @@ class CameraViewController: UIViewController {
             self.view.addSubview(previewView)
         }
         
+        view.addSubview(gradientView)
+        
         focusView = FocusIndicatorView(frame: .zero)
         
         recordButton.isUserInteractionEnabled = true
@@ -142,7 +180,6 @@ class CameraViewController: UIViewController {
         recordGestureRecognizer?.minimumPressDuration = 0.05
         recordGestureRecognizer?.allowableMovement = 10.0
         recordButton.addGestureRecognizer(recordGestureRecognizer!)
-        
         
         // gestures
         gestureView = UIView(frame: screenBounds)
@@ -162,46 +199,57 @@ class CameraViewController: UIViewController {
             }
         }
         
-        
         view.addSubview(recordButton)
-        view.addSubview(backButton)
-        view.addSubview(lightButton)
-        view.addSubview(flipButton)
-        view.addSubview(addButton)
-        view.addSubview(backspaceButton)
-        view.addSubview(libraryButton)
+        view.addSubview(cancelButton)
+        view.addSubview(titleLabel)
         view.addSubview(doneButton)
-        view.addSubview(postButton)
+        view.addSubview(itemsBadge)
+        view.addSubview(itemsScrollView)
+        view.addSubview(lightButton)
+        view.addSubview(libraryButton)
+        view.addSubview(nextButton)
+        
+        gradientView.snp.makeConstraints {
+            $0.top.left.right.equalTo(view)
+            $0.height.equalTo(130)
+        }
         
         recordButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
             $0.centerX.equalToSuperview()
         }
         
-        backButton.snp.makeConstraints {
-            $0.left.equalTo(view).inset(5)
-            $0.top.equalTo(view).inset(66)
-            $0.width.height.equalTo(38)
+        cancelButton.snp.makeConstraints {
+            $0.left.equalTo(view).inset(23)
+            $0.top.equalTo(view).inset(20)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalTo(view)
+            $0.centerY.equalTo(cancelButton)
+        }
+        
+        doneButton.snp.makeConstraints {
+            $0.right.equalTo(view).inset(23)
+            $0.top.equalTo(view).inset(20)
+        }
+        
+        itemsBadge.snp.makeConstraints {
+            $0.right.equalTo(view).inset(14)
+            $0.top.equalTo(view).inset(19)
+            $0.height.equalTo(17)
+            $0.width.greaterThanOrEqualTo(17)
+        }
+        
+        itemsScrollView.snp.makeConstraints {
+            $0.top.equalTo(63)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(60)
         }
         
         lightButton.snp.makeConstraints {
             $0.right.equalTo(view).inset(20)
-            $0.top.equalTo(backButton.snp.top)
-        }
-        
-        flipButton.snp.makeConstraints {
-            $0.centerX.equalTo(lightButton)
-            $0.top.equalTo(lightButton.snp.bottom).offset(30)
-        }
-        
-        addButton.snp.makeConstraints {
-            $0.centerX.equalTo(lightButton)
-            $0.top.equalTo(flipButton.snp.bottom).offset(30)
-        }
-        
-        backspaceButton.snp.makeConstraints {
-            $0.centerX.equalTo(lightButton)
-            $0.top.equalTo(addButton.snp.bottom).offset(30)
+            $0.top.equalTo(160)
         }
         
         libraryButton.snp.makeConstraints {
@@ -209,13 +257,9 @@ class CameraViewController: UIViewController {
             $0.right.equalTo(recordButton.snp.left).offset(-80)
         }
         
-        doneButton.snp.makeConstraints {
+        nextButton.snp.makeConstraints {
             $0.centerY.equalTo(recordButton)
             $0.left.equalTo(recordButton.snp.right).offset(80)
-        }
-        
-        postButton.snp.makeConstraints {
-            $0.top.left.equalTo(doneButton)
         }
         
         let nextLevel = NextLevel.shared
@@ -231,6 +275,10 @@ class CameraViewController: UIViewController {
         nextLevel.videoConfiguration.profileLevel = AVVideoProfileLevelH264HighAutoLevel
         nextLevel.audioConfiguration.bitRate = 96000
         nextLevel.metadataObjectTypes = [AVMetadataObject.ObjectType.face]
+        
+        addItemInput()
+        addItemInput()
+        addItemInput()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -283,6 +331,52 @@ class CameraViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         NextLevel.shared.stop()
+    }
+    
+    func addItemInput() {
+        let newItemInputView = ItemCameraEditView()
+        itemsScrollView.addSubview(newItemInputView)
+        
+        if itemInputViews.count > 0 {
+            if let previousInputView = itemInputViews.last {
+                newItemInputView.snp.makeConstraints {
+                    $0.left.equalTo(previousInputView.snp.right).offset(40)
+                    $0.width.equalTo(previousInputView)
+                    $0.top.bottom.equalTo(0)
+                }
+            }
+        } else {
+            newItemInputView.snp.makeConstraints {
+                $0.left.equalTo(20)
+                $0.width.equalToSuperview().inset(20)
+                $0.top.bottom.equalTo(0)
+            }
+        }
+        
+        itemInputViews.append(newItemInputView)
+        itemsScrollView.contentSize = CGSize(width: view.frame.size.width * CGFloat(itemInputViews.count), height: 60)
+        
+        itemsScrollView.updateConstraints()
+        itemsScrollView.layoutSubviews()
+        nextButton.isEnabled = true
+        
+        itemsBadge.text = "\(itemInputViews.count)"
+    }
+    
+    var itemIndex = Int(0)
+    @objc func tappedNext() {
+        if itemIndex < itemInputViews.count - 1 {
+            itemIndex = itemIndex + 1
+            var itemFrame = itemInputViews[itemIndex].frame
+            itemFrame.origin.x = itemFrame.origin.x + 20
+            itemsScrollView.scrollRectToVisible(itemFrame, animated: true)
+        } else {
+            itemIndex = 0
+            var itemFrame = itemInputViews[itemIndex].frame
+            itemFrame.origin.x = 0
+            itemsScrollView.scrollRectToVisible(itemFrame, animated: true)
+        }
+        
     }
     
 }

@@ -11,6 +11,9 @@
 		5C200E9E23622B70007BEEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C200E9D23622B70007BEEB7 /* AppDelegate.swift */; };
 		5C200EA423622B71007BEEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C200EA323622B71007BEEB7 /* Assets.xcassets */; };
 		5C200EAA23622B71007BEEB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C200EA823622B71007BEEB7 /* LaunchScreen.storyboard */; };
+		5C5EAA0C2442645400D96F0C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0B2442645400D96F0C /* TabBarController.swift */; };
+		5C5EAA0E2442C6E600D96F0C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */; };
+		5C5EAA10244357B100D96F0C /* ItemCameraEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */; };
 		5C61AAD123CFAE8B0076CF3C /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */; };
 		5C61AAD323D0208A0076CF3C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD223D0208A0076CF3C /* SearchBarView.swift */; };
 		5C61AAD523D020C90076CF3C /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD423D020C90076CF3C /* TitleBarView.swift */; };
@@ -46,6 +49,9 @@
 		5C200EA323622B71007BEEB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C200EA923622B71007BEEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C200EAB23622B71007BEEB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C5EAA0B2442645400D96F0C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCameraEditView.swift; sourceTree = "<group>"; };
 		5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5C61AAD223D0208A0076CF3C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5C61AAD423D020C90076CF3C /* TitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				5CA34CB723CC2BF800517F3A /* PopupView.swift */,
 				5C61AAD223D0208A0076CF3C /* SearchBarView.swift */,
 				5C61AAD423D020C90076CF3C /* TitleBarView.swift */,
+				5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */,
+				5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +177,7 @@
 				5CA34CA023CC294200517F3A /* ListingViewController.swift */,
 				5CA34C9C23CC28C700517F3A /* LoginViewController.swift */,
 				5CA34CD023CC305A00517F3A /* VerifyViewController.swift */,
+				5C5EAA0B2442645400D96F0C /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +325,7 @@
 			files = (
 				5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */,
 				5CA34CD123CC305A00517F3A /* VerifyViewController.swift in Sources */,
+				5C5EAA10244357B100D96F0C /* ItemCameraEditView.swift in Sources */,
 				5C92EA322377DA1E00D3E6E2 /* FocusIndicatorView.swift in Sources */,
 				5C61AAD523D020C90076CF3C /* TitleBarView.swift in Sources */,
 				5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */,
@@ -323,6 +333,8 @@
 				5C61AAD323D0208A0076CF3C /* SearchBarView.swift in Sources */,
 				5CA34CA123CC294200517F3A /* ListingViewController.swift in Sources */,
 				5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */,
+				5C5EAA0E2442C6E600D96F0C /* GradientBackgroundView.swift in Sources */,
+				5C5EAA0C2442645400D96F0C /* TabBarController.swift in Sources */,
 				5CA34CB923CC2BF800517F3A /* PopupView.swift in Sources */,
 				5CA34CBD23CC2CD500517F3A /* ColorManager.swift in Sources */,
 				5CA34CE023CCD30200517F3A /* SDFileUtils.swift in Sources */,

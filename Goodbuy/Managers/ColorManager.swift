@@ -18,6 +18,7 @@ class ColorManager: NSObject {
     var defaultColor = UIColor(hex: 0x8660F3)
     var secondaryColor = UIColor(hex: 0x5120E6)
     var accentColor = UIColor(hex: 0xFF3E8E)
+    var blue = UIColor(hex: 0x1188FF)
     
     var userColor: UIColor {
         get {

@@ -42,8 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let shared = AppDelegate()
     
     var window: UIWindow?
-    lazy var homeViewController: HomeViewController = {
-        return HomeViewController()
+    lazy var appViewController: TabBarController = {
+        let tabBar = TabBarController()
+        tabBar.viewControllers = [ColorAwareNavigationController(rootViewController: HomeViewController())]
+        return tabBar
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -65,9 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserManager.current.name != nil {
             authContinue()
         } else {
-            let vc = LoginViewController()
-            let nc = ColorAwareNavigationController(rootViewController: vc)
-            AppDelegate.shared.window?.rootViewController = nc
+            authUser()
         }
         
         AppDelegate.shared.window?.makeKeyAndVisible()
@@ -76,15 +76,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func authContinue() {
-        let nc = ColorAwareNavigationController(rootViewController: homeViewController)
-        AppDelegate.shared.window?.rootViewController = nc
+        AppDelegate.shared.window?.rootViewController = appViewController
+    }
+    
+    func authUser() {
+        AppDelegate.shared.window?.rootViewController = ColorAwareNavigationController(rootViewController: LoginViewController())
     }
     
     func logOut() {
         UserManager.current.reset()
-        let vc = LoginViewController()
-        let nc = ColorAwareNavigationController(rootViewController: vc)
-        AppDelegate.shared.window?.rootViewController = nc
+        authUser()
     }
 }
 

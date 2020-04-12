@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         title = ""
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hex: 0xF2F2F2)
         
         let window = KeyWindow
         let height = window?.safeAreaInsets.top ?? 0.0
@@ -100,10 +100,10 @@ extension HomeViewController: SearchBarViewDelegate {
             AppDelegate.shared.logOut()
             return .noAnimation
         }
-        popup.dialogButtonBackgroundColor = UserColor.light().light()
-        popup.dialogButtonTextColor = UserColor.dark()
+        popup.dialogButtonBackgroundColor = ColorManager.shared.defaultColor.light().light()
+        popup.dialogButtonTextColor = ColorManager.shared.secondaryColor
         popup.dialogButtonDefaultTextColor = .white
-        popup.dialogButtonDefaultBackgroundColor = UserColor
+        popup.dialogButtonDefaultBackgroundColor = ColorManager.shared.defaultColor
         popup.overlayDismisses = true
         popup.showWithType(showType: .normal)
     }
