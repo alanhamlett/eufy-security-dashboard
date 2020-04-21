@@ -165,8 +165,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc func loginPressed() {
-        //loginButton.loadingIndicator(true, color: ColorManager.shared.secondaryColor)
-        //loginButton.setTitle("", for: .normal)
+        loginButton.loadingIndicator(true, color: ColorManager.shared.secondaryColor)
+        loginButton.setTitle("", for: .normal)
         setUser()
     }
     

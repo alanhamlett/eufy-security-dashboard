@@ -11,7 +11,7 @@ import Realm
 import RealmSwift
 
 let NextLevelAlbumTitle = "NextLevel"
-let BarHeight: CGFloat = 54.0
+let BarHeight: CGFloat = 50.0
 
 var UserColor: UIColor {
     get {
@@ -37,16 +37,18 @@ var Color: ColorManager {
     }
 }
 
+class ColorAwareNavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     static let shared = AppDelegate()
     
     var window: UIWindow?
-    lazy var appViewController: TabBarController = {
-        let tabBar = TabBarController()
-        tabBar.viewControllers = [ColorAwareNavigationController(rootViewController: HomeViewController())]
-        return tabBar
-    }()
+    var appViewController = TabBarController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -86,12 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func logOut() {
         UserManager.current.reset()
         authUser()
-    }
-}
-
-class ColorAwareNavigationController: UINavigationController {
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 }
 

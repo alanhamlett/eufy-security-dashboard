@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 50
         tableView.sectionFooterHeight = 5
+        tableView.keyboardDismissMode = .interactive
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: BarHeight, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = .clear
@@ -92,20 +93,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: SearchBarViewDelegate {
     func tappedSettings() {
-        let popup = AlertPopupView(image: nil, title: CurrentUser.name ?? "", message: "You're the best.")
-        popup.addButton(title: "Close") { () -> PopupViewDismissType in
-            return .flyDown
-        }
-        popup.addDefaultButton(title: "Log Out") { () -> PopupViewDismissType in
-            AppDelegate.shared.logOut()
-            return .noAnimation
-        }
-        popup.dialogButtonBackgroundColor = ColorManager.shared.defaultColor.light().light()
-        popup.dialogButtonTextColor = ColorManager.shared.secondaryColor
-        popup.dialogButtonDefaultTextColor = .white
-        popup.dialogButtonDefaultBackgroundColor = ColorManager.shared.defaultColor
-        popup.overlayDismisses = true
-        popup.showWithType(showType: .normal)
+        
     }
     
     func search(text: String?) {

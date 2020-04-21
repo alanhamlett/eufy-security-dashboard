@@ -14,9 +14,19 @@
 		5C5EAA0C2442645400D96F0C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0B2442645400D96F0C /* TabBarController.swift */; };
 		5C5EAA0E2442C6E600D96F0C /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */; };
 		5C5EAA10244357B100D96F0C /* ItemCameraEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */; };
+		5C5EAA162444142D00D96F0C /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA152444142D00D96F0C /* MessagesViewController.swift */; };
+		5C5EAA182444147D00D96F0C /* BidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA172444147D00D96F0C /* BidsViewController.swift */; };
+		5C5EAA1A2444149900D96F0C /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA192444149900D96F0C /* AccountViewController.swift */; };
+		5C5EAA1C2444216200D96F0C /* TipBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA1B2444216200D96F0C /* TipBubbleView.swift */; };
+		5C5EAA1F2444D05300D96F0C /* CaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5EAA1E2444D05300D96F0C /* CaptureButton.swift */; };
+		5C5F9F5F2446B9D400601F28 /* CameraThumbnailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F9F5E2446B9D400601F28 /* CameraThumbnailsView.swift */; };
 		5C61AAD123CFAE8B0076CF3C /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */; };
 		5C61AAD323D0208A0076CF3C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD223D0208A0076CF3C /* SearchBarView.swift */; };
 		5C61AAD523D020C90076CF3C /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD423D020C90076CF3C /* TitleBarView.swift */; };
+		5C70F112244D510000D4759F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70F111244D510000D4759F /* Item.swift */; };
+		5C70F114244D5A5400D4759F /* ItemMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70F113244D5A5400D4759F /* ItemMedia.swift */; };
+		5C70F117244EA47F00D4759F /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70F116244EA47F00D4759F /* ReviewViewController.swift */; };
+		5C70F119244EA94100D4759F /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C70F118244EA94100D4759F /* PhotosUI.framework */; };
 		5C92EA2B2377BEFC00D3E6E2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C92EA2A2377BEFC00D3E6E2 /* CameraViewController.swift */; };
 		5C92EA2E2377D6A200D3E6E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C92EA2D2377D6A200D3E6E2 /* AVFoundation.framework */; };
 		5C92EA302377D6A900D3E6E2 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C92EA2F2377D6A900D3E6E2 /* AVKit.framework */; };
@@ -52,9 +62,19 @@
 		5C5EAA0B2442645400D96F0C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCameraEditView.swift; sourceTree = "<group>"; };
+		5C5EAA152444142D00D96F0C /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		5C5EAA172444147D00D96F0C /* BidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidsViewController.swift; sourceTree = "<group>"; };
+		5C5EAA192444149900D96F0C /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		5C5EAA1B2444216200D96F0C /* TipBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipBubbleView.swift; sourceTree = "<group>"; };
+		5C5EAA1E2444D05300D96F0C /* CaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureButton.swift; sourceTree = "<group>"; };
+		5C5F9F5E2446B9D400601F28 /* CameraThumbnailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraThumbnailsView.swift; sourceTree = "<group>"; };
 		5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5C61AAD223D0208A0076CF3C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		5C61AAD423D020C90076CF3C /* TitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
+		5C70F111244D510000D4759F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		5C70F113244D5A5400D4759F /* ItemMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMedia.swift; sourceTree = "<group>"; };
+		5C70F116244EA47F00D4759F /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		5C70F118244EA94100D4759F /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		5C92EA2A2377BEFC00D3E6E2 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		5C92EA2D2377D6A200D3E6E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5C92EA2F2377D6A900D3E6E2 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -85,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C70F119244EA94100D4759F /* PhotosUI.framework in Frameworks */,
 				5C92EA342377DA3800D3E6E2 /* Photos.framework in Frameworks */,
 				5C92EA302377D6A900D3E6E2 /* AVKit.framework in Frameworks */,
 				5C92EA2E2377D6A200D3E6E2 /* AVFoundation.framework in Frameworks */,
@@ -130,6 +151,7 @@
 		5C92EA2C2377D6A200D3E6E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C70F118244EA94100D4759F /* PhotosUI.framework */,
 				5C92EA332377DA3800D3E6E2 /* Photos.framework */,
 				5C92EA2F2377D6A900D3E6E2 /* AVKit.framework */,
 				5C92EA2D2377D6A200D3E6E2 /* AVFoundation.framework */,
@@ -155,6 +177,9 @@
 				5C61AAD423D020C90076CF3C /* TitleBarView.swift */,
 				5C5EAA0D2442C6E600D96F0C /* GradientBackgroundView.swift */,
 				5C5EAA0F244357B100D96F0C /* ItemCameraEditView.swift */,
+				5C5EAA1B2444216200D96F0C /* TipBubbleView.swift */,
+				5C5EAA1E2444D05300D96F0C /* CaptureButton.swift */,
+				5C5F9F5E2446B9D400601F28 /* CameraThumbnailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,8 +197,12 @@
 		5CA34CC423CC2D9400517F3A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5C92EA2A2377BEFC00D3E6E2 /* CameraViewController.swift */,
 				5CA34C9E23CC290C00517F3A /* HomeViewController.swift */,
+				5C5EAA152444142D00D96F0C /* MessagesViewController.swift */,
+				5C92EA2A2377BEFC00D3E6E2 /* CameraViewController.swift */,
+				5C70F116244EA47F00D4759F /* ReviewViewController.swift */,
+				5C5EAA172444147D00D96F0C /* BidsViewController.swift */,
+				5C5EAA192444149900D96F0C /* AccountViewController.swift */,
 				5CA34CA023CC294200517F3A /* ListingViewController.swift */,
 				5CA34C9C23CC28C700517F3A /* LoginViewController.swift */,
 				5CA34CD023CC305A00517F3A /* VerifyViewController.swift */,
@@ -211,6 +240,8 @@
 			children = (
 				5CA34CD823CC315A00517F3A /* User.swift */,
 				5CA34CD623CC312400517F3A /* Listing.swift */,
+				5C70F111244D510000D4759F /* Item.swift */,
+				5C70F113244D5A5400D4759F /* ItemMedia.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,27 +356,36 @@
 			files = (
 				5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */,
 				5CA34CD123CC305A00517F3A /* VerifyViewController.swift in Sources */,
+				5C70F117244EA47F00D4759F /* ReviewViewController.swift in Sources */,
 				5C5EAA10244357B100D96F0C /* ItemCameraEditView.swift in Sources */,
 				5C92EA322377DA1E00D3E6E2 /* FocusIndicatorView.swift in Sources */,
 				5C61AAD523D020C90076CF3C /* TitleBarView.swift in Sources */,
 				5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */,
+				5C5EAA1F2444D05300D96F0C /* CaptureButton.swift in Sources */,
 				5CA34CD923CC315A00517F3A /* User.swift in Sources */,
 				5C61AAD323D0208A0076CF3C /* SearchBarView.swift in Sources */,
 				5CA34CA123CC294200517F3A /* ListingViewController.swift in Sources */,
 				5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */,
 				5C5EAA0E2442C6E600D96F0C /* GradientBackgroundView.swift in Sources */,
 				5C5EAA0C2442645400D96F0C /* TabBarController.swift in Sources */,
+				5C5EAA162444142D00D96F0C /* MessagesViewController.swift in Sources */,
 				5CA34CB923CC2BF800517F3A /* PopupView.swift in Sources */,
 				5CA34CBD23CC2CD500517F3A /* ColorManager.swift in Sources */,
+				5C5F9F5F2446B9D400601F28 /* CameraThumbnailsView.swift in Sources */,
 				5CA34CE023CCD30200517F3A /* SDFileUtils.swift in Sources */,
 				5CA34CBB23CC2C6F00517F3A /* KeyboardHelper.swift in Sources */,
 				5CA34C9D23CC28C700517F3A /* LoginViewController.swift in Sources */,
+				5C5EAA1C2444216200D96F0C /* TipBubbleView.swift in Sources */,
 				5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */,
 				5CA34CD723CC312400517F3A /* Listing.swift in Sources */,
+				5C5EAA1A2444149900D96F0C /* AccountViewController.swift in Sources */,
 				5C61AAD123CFAE8B0076CF3C /* UIColorExtensions.swift in Sources */,
 				5CCF9AD623F112BD004BCDDB /* AccessTokenAdapter.swift in Sources */,
 				5CA34CE223CCFFB600517F3A /* UIFontExtensions.swift in Sources */,
 				5C200E9E23622B70007BEEB7 /* AppDelegate.swift in Sources */,
+				5C70F112244D510000D4759F /* Item.swift in Sources */,
+				5C70F114244D5A5400D4759F /* ItemMedia.swift in Sources */,
+				5C5EAA182444147D00D96F0C /* BidsViewController.swift in Sources */,
 				5CA34CAB23CC2A0D00517F3A /* ButtonsHelper.swift in Sources */,
 				5CA34CB823CC2BF800517F3A /* AlertPopupView.swift in Sources */,
 				5C92EA2B2377BEFC00D3E6E2 /* CameraViewController.swift in Sources */,

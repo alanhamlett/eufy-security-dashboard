@@ -54,15 +54,6 @@ class SearchBarView: UIView {
         return field
     }()
     
-    private lazy var settingsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "settings"), for: .normal)
-        button.addTarget(self, action: #selector(tappedSettings), for: .touchUpInside)
-        button.tintColor = .white
-        return button
-    }()
-    
     private lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
@@ -77,7 +68,6 @@ class SearchBarView: UIView {
     var inSearchMode = false {
         didSet(value) {
             searchBarConstraint()
-            settingsButton.isHidden = !value
             cancelButton.isHidden = value
         }
     }
@@ -86,18 +76,11 @@ class SearchBarView: UIView {
         super.init(frame: frame)
         
         addSubview(searchBar)
-        addSubview(settingsButton)
         addSubview(cancelButton)
         
         cancelButton.snp.makeConstraints {
             $0.right.equalTo(self).inset(14)
             $0.centerY.equalTo(searchBar)
-        }
-        
-        settingsButton.snp.makeConstraints {
-            $0.right.equalTo(self).inset(16)
-            $0.centerY.equalTo(searchBar)
-            $0.width.height.equalTo(38)
         }
         
         searchBarConstraint()
@@ -121,8 +104,7 @@ class SearchBarView: UIView {
             }
         } else {
             searchBar.snp.remakeConstraints {
-                $0.left.equalTo(self).inset(12)
-                $0.right.equalTo(settingsButton.snp.left).offset(-12)
+                $0.left.right.equalTo(self).inset(12)
                 $0.height.equalTo(38)
                 $0.bottom.equalTo(self).inset(8)
             }
@@ -131,7 +113,7 @@ class SearchBarView: UIView {
     
     func updateStyles() {
         backgroundColor = ColorManager.shared.defaultColor
-        searchbarLeftView.tintColor = ColorManager.shared.defaultColor
+        searchbarLeftView.tintColor = ColorManager.shared.defaultColor.light()
         searchBar.backgroundColor = ColorManager.shared.secondaryColor
         searchBar.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: ColorManager.shared.defaultColor.light().light()])
     }

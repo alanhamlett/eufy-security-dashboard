@@ -10,14 +10,13 @@ import UIKit
 
 protocol TitleBarViewDelegate {
     func tappedBack()
-    func tappedSettings()
-    func tappedInfo()
+    func tappedRightButton()
 }
 
 class TitleBarView: UIView {
     var delegate: TitleBarViewDelegate?
     
-    private lazy var backButton: UIButton = {
+    lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.setImage(UIImage(named: "back"), for: .normal)
@@ -25,8 +24,6 @@ class TitleBarView: UIView {
         button.tintColor = .white
         return button
     }()
-    
-    let icon = UIImageView(image: UIImage(named: "pound")?.withRenderingMode(.alwaysTemplate))
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -38,7 +35,7 @@ class TitleBarView: UIView {
         return label
     }()
     
-    private lazy var rightButton: UIButton = {
+    lazy var rightButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
         button.setImage(UIImage(named: "info"), for: .normal)
@@ -50,21 +47,24 @@ class TitleBarView: UIView {
     var title: String?
     var subTitle: String?
     
+    private var line = UIView()
+    
     convenience init(title: String?, subTitle: String?) {
         self.init(frame: CGRect.zero)
         
         self.title = title
         self.subTitle = subTitle
         
+        titleLabel.text = title
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(backButton)
-        addSubview(icon)
         addSubview(titleLabel)
         addSubview(rightButton)
+        addSubview(line)
         
         backButton.snp.makeConstraints {
             $0.left.equalTo(self).inset(5)
@@ -72,13 +72,8 @@ class TitleBarView: UIView {
             $0.width.height.equalTo(38)
         }
         
-        icon.snp.makeConstraints {
-            $0.left.equalTo(backButton.snp.right).offset(10)
-            $0.centerY.equalTo(backButton)
-        }
-        
         titleLabel.snp.makeConstraints {
-            $0.left.equalTo(icon.snp.right).offset(8)
+            $0.centerX.equalTo(self)
             $0.centerY.equalTo(backButton)
         }
         
@@ -88,6 +83,12 @@ class TitleBarView: UIView {
             $0.width.height.equalTo(38)
         }
         
+        line.snp.makeConstraints {
+            $0.left.right.equalTo(self)
+            $0.height.equalTo(0.5)
+            $0.bottom.equalTo(self)
+        }
+        
         updateStyles()
     }
     
@@ -95,9 +96,16 @@ class TitleBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateStyles() {
-//        backgroundColor = Color.colorForText(data?.name)
-//        icon.tintColor = Color.colorForText(data?.name).vibrant()
+    func updateStyles(light: Bool? = false) {
+        if light ?? false {
+            backgroundColor = ColorManager.shared.defaultColor
+        } else {
+            backgroundColor = .white
+            rightButton.tintColor = UIColor(hex: 0x9C9C9C)
+            backButton.tintColor = UIColor(hex: 0x9C9C9C)
+            titleLabel.textColor = .black
+            line.backgroundColor = UIColor(hex: 0xD8D8D8)
+        }
     }
     
     @objc func tappedBack() {
@@ -105,10 +113,6 @@ class TitleBarView: UIView {
     }
     
     @objc func tappedRightButton() {
-//        if let data = data, data.isOwner {
-//            delegate?.tappedSettings()
-//        } else {
-//            delegate?.tappedInfo()
-//        }
+        delegate?.tappedRightButton()
     }
 }

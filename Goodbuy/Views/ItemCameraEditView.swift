@@ -17,12 +17,13 @@ class ItemCameraEditView: UIView {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor(hex: 0xDFDFDF)
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 8
         return imageView
     }()
     
     fileprivate lazy var titleField: UITextField = {
         let label = UITextField()
-        label.placeholder = "Item title"
+        label.attributedPlaceholder = NSAttributedString(string: "Item title", attributes: [NSAttributedString.Key.foregroundColor: UIColor(hex: 0x959595)])
         label.font = UIFont.roundedFont(ofSize: .headline, weight: .bold)
         label.textColor = .black
         label.tintColor = ColorManager.shared.blue
@@ -44,7 +45,7 @@ class ItemCameraEditView: UIView {
     fileprivate lazy var editButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle("edit", for: .normal)
+        button.setTitle("Edit", for: .normal)
         button.addTarget(self, action: #selector(tappedEdit), for: .touchUpInside)
         button.titleLabel?.font = UIFont.roundedFont(ofSize: .subheadline, weight: .medium)
         button.setTitleColor(UIColor(hex: 0x959595), for: .normal)
@@ -55,7 +56,7 @@ class ItemCameraEditView: UIView {
     fileprivate lazy var doneButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle("done", for: .normal)
+        button.setTitle("Done", for: .normal)
         button.addTarget(self, action: #selector(tappedDone), for: .touchUpInside)
         button.titleLabel?.font = UIFont.roundedFont(ofSize: .subheadline, weight: .medium)
         button.setTitleColor(UIColor(hex: 0x959595), for: .normal)

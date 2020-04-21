@@ -85,11 +85,7 @@ extension ListingViewController: TitleBarViewDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    func tappedSettings() {
-        
-    }
-    
-    func tappedInfo() {
+    func tappedRightButton() {
         
     }
 }
