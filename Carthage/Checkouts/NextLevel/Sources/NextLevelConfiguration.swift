@@ -47,6 +47,7 @@ public class NextLevelConfiguration {
     /// - widescreenLandscape: 16:9 HD landscape
     /// - instagram: 4:5 Instagram
     /// - instagramLandscape: 5:4 Instagram landscape
+    /// - instagramStories: 9:16 Instagram stories
     /// - cinematic: 2.35:1 cinematic
     /// - custom: custom aspect ratio
     public enum AspectRatio: CustomStringConvertible {
@@ -56,8 +57,11 @@ public class NextLevelConfiguration {
         case standardLandscape
         case widescreen
         case widescreenLandscape
+        case twitter
+        case youtube
         case instagram
         case instagramLandscape
+        case instagramStories
         case cinematic
         case custom(w: Int, h: Int)
         
@@ -74,12 +78,16 @@ public class NextLevelConfiguration {
                     return CGSize(width: 4, height: 3)
                 case .widescreen:
                     return CGSize(width: 9, height: 16)
+                case .twitter, .youtube:
+                    fallthrough
                 case .widescreenLandscape:
                     return CGSize(width: 16, height: 9)
                 case .instagram:
                     return CGSize(width: 4, height: 5)
                 case .instagramLandscape:
                     return CGSize(width: 5, height: 4)
+                case .instagramStories:
+                    return CGSize(width: 9, height: 16)
                 case .cinematic:
                     return CGSize(width: 2.35, height: 1)
                 case .custom(let w, let h):
@@ -123,10 +131,16 @@ public class NextLevelConfiguration {
                     return "9:16 Widescreen HD"
                 case .widescreenLandscape:
                     return "16:9 Widescreen Landscape HD"
+                case .twitter:
+                    return "16:9 Twitter Widescreen Landscape HD"
+                case .youtube:
+                    return "16:9 YouTube Widescreen Landscape HD"
                 case .instagram:
                     return "4:5 Instagram"
                 case .instagramLandscape:
                     return "5:4 Instagram Landscape"
+                case .instagramStories:
+                    return "9:16 Instagram Stories"
                 case .cinematic:
                     return "2.35:1 Cinematic"
                 case .custom(let w, let h):

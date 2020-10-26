@@ -1,18 +1,3 @@
-github "yannickl/DynamicColor" ~> 4.2.1
-github "valdirunars/Lorikeet"
-github "luoxiu/Schedule" ~> 2.0
-github "maxkonovalov/MKGradientView"
 github "SnapKit/SnapKit" ~> 5.0.0
-github "maxkonovalov/MKRingProgressView"
-github "realm/realm-cocoa"
-github "amplitude/Amplitude-iOS"
-github "facebook/pop"
-github "naoty/Timepiece"
-github "dingwilson/MultiPeer"
-github "nextlevel/NextLevel" ~> 0.16.0
-github "piemonte/Player" ~> 0.13.0
 github "jrendel/SwiftKeychainWrapper"
-github "daltoniam/Starscream" >= 4.0.0
-github "marty-suzuki/ReverseExtension"
-github "catelina777/FloatingSegmentedControl"
-
+github "SDWebImage/SDWebImage" "master"

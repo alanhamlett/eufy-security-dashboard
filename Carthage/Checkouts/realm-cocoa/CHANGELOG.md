@@ -1,3 +1,43 @@
+4.4.1 Release notes (2020-04-16)
+=============================================================
+
+### Enhancements
+
+* Upgrade Xcode 11.4 binaries to Xcode 11.4.1.
+
+### Fixed
+
+* Fix a "previous <= m_schema_transaction_version_max" assertion failure caused
+  by a race condition that could occur after performing a migration. (Since 3.0.0).
+
+### Compatibility
+
+* File format: Generates Realms with format v9 (Reads and upgrades all previous formats)
+* Realm Object Server: 3.21.0 or later.
+* Carthage release for Swift is built with Xcode 11.4.1.
+
+4.4.0 Release notes (2020-03-26)
+=============================================================
+
+Swift 4.0 and Xcode 10.3 are now the minimum supported versions.
+
+### Enhancements
+
+* Allow setting the `fileUrl` for synchronized Realms. An appropriate local
+  path based on the sync URL will still be used if it is not overridden.
+  ([PR #6454](https://github.com/realm/realm-cocoa/pull/6454)).
+* Add Xcode 11.4 binaries to the release package.
+
+### Fixed
+
+* None.
+
+### Compatibility
+
+* File format: Generates Realms with format v9 (Reads and upgrades all previous formats)
+* Realm Object Server: 3.21.0 or later.
+* Carthage release for Swift is built with Xcode 11.4.
+
 4.3.2 Release notes (2020-02-06)
 =============================================================
 
