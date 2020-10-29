@@ -1,3 +1,3 @@
-github "SnapKit/SnapKit" ~> 5.0.0
-github "jrendel/SwiftKeychainWrapper"
-github "onevcat/Kingfisher"
+github "SnapKit/SnapKit"                "5.0.1"
+github "jrendel/SwiftKeychainWrapper"   "3.4.0"
+github "rs/SDWebImage"                  "4.4.6"
