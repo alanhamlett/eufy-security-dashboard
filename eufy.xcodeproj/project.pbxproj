@@ -11,7 +11,6 @@
 		5C200E9E23622B70007BEEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C200E9D23622B70007BEEB7 /* AppDelegate.swift */; };
 		5C200EA423622B71007BEEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C200EA323622B71007BEEB7 /* Assets.xcassets */; };
 		5C200EAA23622B71007BEEB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C200EA823622B71007BEEB7 /* LaunchScreen.storyboard */; };
-		5C61AAD123CFAE8B0076CF3C /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */; };
 		5C686B782547809400EE6AD3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5C686B772547809400EE6AD3 /* README.md */; };
 		5C92EA2E2377D6A200D3E6E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C92EA2D2377D6A200D3E6E2 /* AVFoundation.framework */; };
 		5C92EA302377D6A900D3E6E2 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C92EA2F2377D6A900D3E6E2 /* AVKit.framework */; };
@@ -19,11 +18,10 @@
 		5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34C9E23CC290C00517F3A /* HomeViewController.swift */; };
 		5CA34CAB23CC2A0D00517F3A /* ButtonsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */; };
 		5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CB223CC2ACC00517F3A /* UserIconView.swift */; };
-		5CA34CBB23CC2C6F00517F3A /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CBA23CC2C6F00517F3A /* KeyboardHelper.swift */; };
 		5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CBE23CC2D0000517F3A /* UserManager.swift */; };
 		5CA34CD523CC30CD00517F3A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */; };
-		5CA34CD723CC312400517F3A /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Listing.swift */; };
-		5CA34CD923CC315A00517F3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* User.swift */; };
+		5CA34CD723CC312400517F3A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Device.swift */; };
+		5CA34CD923CC315A00517F3A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* Login.swift */; };
 		5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCF9AD923F34CF7004BCDDB /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +32,6 @@
 		5C200EA323622B71007BEEB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C200EA923622B71007BEEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C200EAB23622B71007BEEB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5C686B772547809400EE6AD3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5C70F118244EA94100D4759F /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		5C92EA2D2377D6A200D3E6E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -44,11 +41,10 @@
 		5CA34C9E23CC290C00517F3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsHelper.swift; sourceTree = "<group>"; };
 		5CA34CB223CC2ACC00517F3A /* UserIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconView.swift; sourceTree = "<group>"; };
-		5CA34CBA23CC2C6F00517F3A /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		5CA34CBE23CC2D0000517F3A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5CA34CD623CC312400517F3A /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
-		5CA34CD823CC315A00517F3A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5CA34CD623CC312400517F3A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		5CA34CD823CC315A00517F3A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		5CCF9AD923F34CF7004BCDDB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +90,6 @@
 				5CA34CDE23CC36E500517F3A /* Model */,
 				5CA34CC423CC2D9400517F3A /* Controllers */,
 				5CA34CC123CC2D2900517F3A /* Cells */,
-				5CA34CC223CC2D4C00517F3A /* Views */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -118,17 +113,9 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		5CA34CC223CC2D4C00517F3A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		5CA34CC323CC2D8300517F3A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5CA34CBA23CC2C6F00517F3A /* KeyboardHelper.swift */,
 				5CA34CBE23CC2D0000517F3A /* UserManager.swift */,
 			);
 			path = Managers;
@@ -137,8 +124,8 @@
 		5CA34CC423CC2D9400517F3A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5CA34C9E23CC290C00517F3A /* HomeViewController.swift */,
 				5CA34C9C23CC28C700517F3A /* LoginViewController.swift */,
+				5CA34C9E23CC290C00517F3A /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */,
-				5C61AAD023CFAE8B0076CF3C /* UIColorExtensions.swift */,
 				5CCF9AD923F34CF7004BCDDB /* APIClient.swift */,
 			);
 			path = Helpers;
@@ -167,8 +153,8 @@
 		5CA34CDE23CC36E500517F3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5CA34CD823CC315A00517F3A /* User.swift */,
-				5CA34CD623CC312400517F3A /* Listing.swift */,
+				5CA34CD823CC315A00517F3A /* Login.swift */,
+				5CA34CD623CC312400517F3A /* Device.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,13 +258,11 @@
 			files = (
 				5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */,
 				5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */,
-				5CA34CD923CC315A00517F3A /* User.swift in Sources */,
+				5CA34CD923CC315A00517F3A /* Login.swift in Sources */,
 				5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */,
-				5CA34CBB23CC2C6F00517F3A /* KeyboardHelper.swift in Sources */,
 				5CA34C9D23CC28C700517F3A /* LoginViewController.swift in Sources */,
 				5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */,
-				5CA34CD723CC312400517F3A /* Listing.swift in Sources */,
-				5C61AAD123CFAE8B0076CF3C /* UIColorExtensions.swift in Sources */,
+				5CA34CD723CC312400517F3A /* Device.swift in Sources */,
 				5C200E9E23622B70007BEEB7 /* AppDelegate.swift in Sources */,
 				5CA34CAB23CC2A0D00517F3A /* ButtonsHelper.swift in Sources */,
 			);

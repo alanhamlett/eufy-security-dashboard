@@ -74,6 +74,7 @@
 }
 
 - (void)test07ThatDecodeAndScaleDownImageDoesNotScaleSmallerImage {
+    // check when user use the larget bytes than image pixels byets, we do not scale up the image (defaults 60MB means 3965x3965 pixels)
     NSString *testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestImage" ofType:@"jpg"];
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImagePath];
     UIImage *decodedImage = [UIImage sd_decodedAndScaledDownImageWithImage:image];
@@ -81,6 +82,17 @@
     expect(decodedImage).toNot.equal(image);
     expect(decodedImage.size.width).to.equal(image.size.width);
     expect(decodedImage.size.height).to.equal(image.size.height);
+}
+
+- (void)test07ThatDecodeAndScaleDownImageScaleSmallerBytes {
+    // Check when user provide too small bytes, we scale it down to 1x1, but not return the force decoded original size image
+    NSString *testImagePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"TestImage" ofType:@"jpg"];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:testImagePath];
+    UIImage *decodedImage = [UIImage sd_decodedAndScaledDownImageWithImage:image limitBytes:1];
+    expect(decodedImage).toNot.beNil();
+    expect(decodedImage).toNot.equal(image);
+    expect(decodedImage.size.width).to.equal(1);
+    expect(decodedImage.size.height).to.equal(1);
 }
 
 - (void)test08ThatEncodeAlphaImageToJPGWithBackgroundColor {
@@ -169,7 +181,7 @@
 }
 
 - (void)test13ThatHEICWorks {
-    if (@available(iOS 11, macOS 10.13, *)) {
+    if (@available(iOS 11, tvOS 11, macOS 10.13, *)) {
         NSURL *heicURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"heic"];
 #if SD_UIKIT
         BOOL supportsEncoding = YES; // iPhone Simulator after Xcode 9.3 support HEIC encoding
@@ -184,7 +196,7 @@
 }
 
 - (void)test14ThatHEIFWorks {
-    if (@available(iOS 11, macOS 10.13, *)) {
+    if (@available(iOS 11, tvOS 11, macOS 10.13, *)) {
         NSURL *heifURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"heif"];
         [self verifyCoder:[SDImageIOCoder sharedCoder]
         withLocalImageURL:heifURL
@@ -198,12 +210,12 @@
     manager.coders = @[SDImageIOCoder.sharedCoder];
     expect([manager canDecodeFromData:nil]).beTruthy(); // Image/IO will return YES for future format
     expect([manager decodedImageWithData:nil options:nil]).beNil();
-    expect([manager canEncodeToFormat:SDImageFormatWebP]).beFalsy();
+    expect([manager canEncodeToFormat:SDImageFormatUndefined]).beTruthy(); // Image/IO will return YES for future format
     expect([manager encodedDataWithImage:nil format:SDImageFormatUndefined options:nil]).beNil();
 }
 
 - (void)test16ThatHEICAnimatedWorks {
-    if (@available(iOS 11, macOS 10.13, *)) {
+    if (@available(iOS 13, tvOS 13, macOS 10.15, *)) {
         NSURL *heicURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImageAnimated" withExtension:@"heic"];
 #if SD_UIKIT
         BOOL isAnimatedImage = YES;
@@ -231,7 +243,31 @@
         isVectorImage:YES];
 }
 
-- (void)test18ThatImageIOAnimatedCoderAbstractClass {
+- (void)test18ThatStaticWebPWorks {
+    if (@available(iOS 14, tvOS 14, macOS 11, *)) {
+        NSURL *staticWebPURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImageStatic" withExtension:@"webp"];
+        [self verifyCoder:[SDImageAWebPCoder sharedCoder]
+        withLocalImageURL:staticWebPURL
+         supportsEncoding:NO // Currently (iOS 14.0) seems no encoding support
+           encodingFormat:SDImageFormatWebP
+          isAnimatedImage:NO
+            isVectorImage:NO];
+    }
+}
+
+- (void)test19ThatAnimatedWebPWorks {
+    if (@available(iOS 14, tvOS 14, macOS 11, *)) {
+        NSURL *staticWebPURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImageAnimated" withExtension:@"webp"];
+        [self verifyCoder:[SDImageAWebPCoder sharedCoder]
+        withLocalImageURL:staticWebPURL
+         supportsEncoding:NO // Currently (iOS 14.0) seems no encoding support
+           encodingFormat:SDImageFormatWebP
+          isAnimatedImage:YES
+            isVectorImage:NO];
+    }
+}
+
+- (void)test20ThatImageIOAnimatedCoderAbstractClass {
     SDImageIOAnimatedCoder *coder = [[SDImageIOAnimatedCoder alloc] init];
     @try {
         [coder canEncodeToFormat:SDImageFormatPNG];
@@ -241,8 +277,8 @@
     }
 }
 
-- (void)test19ThatEmbedThumbnailHEICWorks {
-    if (@available(iOS 11, macOS 10.13, *)) {
+- (void)test21ThatEmbedThumbnailHEICWorks {
+    if (@available(iOS 11, tvOS 11, macOS 10.13, *)) {
         // The input HEIC does not contains any embed thumbnail
         NSURL *heicURL = [[NSBundle bundleForClass:[self class]] URLForResource:@"TestImage" withExtension:@"heic"];
         CGImageSourceRef source = CGImageSourceCreateWithURL((__bridge CFURLRef)heicURL, nil);

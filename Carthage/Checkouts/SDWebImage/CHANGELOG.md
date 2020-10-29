@@ -1,3 +1,121 @@
+## [5.9.4 - 5.9 Patch, on Oct 13th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.4)
+See [all tickets marked for the 5.9.4 release](https://github.com/SDWebImage/SDWebImage/milestone/80)
+
+### Fixes
+- Fix race condition when using transitions that are canceled and then switched to a new transition or load operation #3108 #3107
+- Fixed the store cache type was specified to `SDImageCacheTypeDisk ` that no pictures were obtained when the disk had pictures #3110
+
+## [5.9.3 - 5.9 Patch, on Oct 13th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.3)
+See [all tickets marked for the 5.9.3 release](https://github.com/SDWebImage/SDWebImage/milestone/79)
+
+### Fixes
+- Fix coder priority inverse in SDAnimatedImage #3101
+- Fix that SDImageCache will automatically store the disk image into memory cache even if store cache type is disk #3104
+
+## [5.9.2 - 5.9 Patch, on Sep 29th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.2)
+See [all tickets marked for the 5.9.2 release](https://github.com/SDWebImage/SDWebImage/milestone/78)
+
+### Fixes
+- Fix the issue that SDAnimatedImageView will trigger an empty callback when animation stopped. This will cause some bad effect such as rendering a empty image or placeholder image (especially on iOS 14) #3092
+- Fix: `duration` is not used in SDWebImageTransition convenience initializers. #3094
+
+## [5.9.1 - 5.9 Patch, on Sep 11th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.1)
+See [all tickets marked for the 5.9.1 release](https://github.com/SDWebImage/SDWebImage/milestone/77)
+
+### Fixes
+- Fix the issue of SDAnimatedImage initWithContentsOfFile where the path name less than 3 characters #3081
+
+## [5.9.0 - iOS 14 WebP, on Aug 27th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.9.0)
+See [all tickets marked for the 5.9.0 release](https://github.com/SDWebImage/SDWebImage/milestone/72)
+
+### Features
+
+#### Image
+- Supports built-in WebP/AWebP codec from ImageIO for iOS 14/tvOS 14/macOS 11/watchOS 7 #3048
+- To use, add `SDImageAWebPCoder` to your coders manager. Note built-in WebP currently supports decoding only, for encoding, you still need `SDImageWebPCoder`
+- Add the support to pass small bytes to `decodedAndScaledDownLargeImage`, which always scale down (at least 1x1 pixel) but not return the original size #3067
+
+#### Cache
+- Supports the user to customize the default disk cache directory, which can be used to share cache for App && App Extension #3066
+
+#### View Category
+- Adjust the current behavior to use transition. Now it automatically do transition when manager callback asynchronously (if user see waiting, then do transition) #3074
+
+### Fixes
+- Fix the bug when the thumbnail pixel size is larger than the pixel size, and the image has EXIF orientation, the final UIImage will use wrong image orientation #3070
+- Fix the image format detection for smaller SVG which less than 100 Bytes #3072
+
+## [5.8.4 - 5.8 Patch, on July 16th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.4)
+See [all tickets marked for the 5.8.4 release](https://github.com/SDWebImage/SDWebImage/milestone/76)
+
+### Fixes
+- Try to copy the local NSMutableDictionary before calling CGImageSourceCreateImageAtIndex, try to solve the rare crash inside ImageIO call stack #3052
+- Fix race condition when use transition but canceling an operation #3053
+
+## [5.8.3 - 5.8 Patch, on July 2nd, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.3)
+See [all tickets marked for the 5.8.3 release](https://github.com/SDWebImage/SDWebImage/milestone/75)
+
+### Changes
+- Add the support for that UIImage+MultiFormat methods on SDAnimatedImage, which supports encoding the animation like GIF/APNG/WebP with lower compression quality #3047
+
+### Fixes
+- Fix the issue of iOS 14 vector image rendering on SDAnimatedImageView #3046
+
+## [5.8.2 - 5.8 Patch, on June 23rd, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.2)
+See [all tickets marked for the 5.8.2 release](https://github.com/SDWebImage/SDWebImage/milestone/74)
+
+### Fixes
+- Fix the issue that SDAnimatedImageView can not render static image on iOS 14. #3043
+- Fix the `maxPixelSize` logic issue will cause a upscale in SDImageIOAnimatedCoder #3039
+
+## [5.8.1 - 5.8 Patch, on June 12th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.1)
+See [all tickets marked for the 5.8.1 release](https://github.com/SDWebImage/SDWebImage/milestone/73)
+
+### Features
+- Added the convenient transition with duration APIs #3027
+
+### Fixes
+- Fix the issue that the NSURLRequest method should not be nil, which may cause Crash #3037
+- Fix the issue when `maxPixelSize` is larger than image size will cause a upscale in ImageIO #3015
+- Change to use `kCGImageSourceCreateThumbnailFromImageAlways` to solve the issue when HEIC/JPEG contains an embed thumbnail but its size is much smaller than provided `maxPixelSize` #3038
+- SDAnimatedImagePlayer seek returning nil image fix #3030
+- Fixing Typos throughout project #3026
+
+## [5.8.0 - Transform original cache and more, on May 11th, 2020](https://github.com/rs/SDWebImage/releases/tag/5.8.0)
+See [all tickets marked for the 5.8.0 release](https://github.com/SDWebImage/SDWebImage/milestone/69)
+
+### Features
+
+#### Transformer
+- Add query original cache for transformed image without downloading #2992
+- This can be used to query the original image from cache then do transforming when transformed key cache miss, without any downloading happened.
+
+#### Animated Image
+- Added autoplay control property to AnimatedImageView (autoPlayAnimatedImage) #3003
+
+#### Manager
+- Mark the black list formal error code, support remove the failed URL from black list #2997
+- Polish the error description between image decode failed and image size is 0 #3005
+
+#### Downloader
+- Add the convenient request/response modifier, which provide HTTP header directly #2990
+
+#### View Category
+- Added the convenient transition options for macOS user. Deprecate the old timingFunction, which can use System API to achieve #2985
+- Feature pass the set operation key into context option from upstream. Fix the potential retain cycle if user use custom manager #2986
+
+#### Coder
+- Feature: Encoding options supports embed thumbnail (works for JPEG/HEIF/AVIF) #2988
+
+#### Project
+- Support the SwiftPM Objective-C user to use `#improt <SDWebImage/SDWebImage.h>` #2987
+
+## [5.7.4 - 5.7 Patch, on May 6th, 2020](https://github.com/SDWebImage/SDWebImage/releases/tag/5.7.4)
+See [all tickets marked for the 5.7.4 release](https://github.com/SDWebImage/SDWebImage/milestone/71)
+
+### Fixes
+- Fix the issue that NSOperation conforms to `SDWebImageOperation` check failed. Fix cancelling prefetcher hung up #2999 #2998
+
 ## [5.7.3 - 5.7 Patch, on Apr 21st, 2020](https://github.com/SDWebImage/SDWebImage/releases/tag/5.7.3)
 See [all tickets marked for the 5.7.3 release](https://github.com/SDWebImage/SDWebImage/milestone/70)
 

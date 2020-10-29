@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -14,28 +14,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goodbuy-logo" translatesAutoresizingMaskIntoConstraints="NO" id="kDI-tH-tg8">
-                                <rect key="frame" x="87" y="384" width="240" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="qOj-oE-z9q"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy, Sell, Everything." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtB-kb-ubs">
-                                <rect key="frame" x="135" y="445" width="144" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="kDI-tH-tg8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="340" id="XR0-Ez-GbT"/>
-                            <constraint firstItem="HtB-kb-ubs" firstAttribute="top" secondItem="kDI-tH-tg8" secondAttribute="bottom" constant="2" id="dio-Nu-962"/>
-                            <constraint firstItem="kDI-tH-tg8" firstAttribute="centerX" secondItem="HtB-kb-ubs" secondAttribute="centerX" id="lCw-uZ-fNE"/>
-                            <constraint firstItem="kDI-tH-tg8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qBL-4c-DTk"/>
-                            <constraint firstItem="kDI-tH-tg8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="rc0-s7-92y"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -44,7 +23,4 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="goodbuy-logo" width="204" height="42"/>
-    </resources>
 </document>

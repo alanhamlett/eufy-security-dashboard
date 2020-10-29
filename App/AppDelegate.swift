@@ -1,7 +1,4 @@
 //
-//  AppDelegate.swift
-//  Hotline
-//
 //  Created by James Mudgett on 10/24/19.
 //  Copyright © 2019 Heavy Technologies, Inc. All rights reserved.
 //
@@ -31,11 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let shared = AppDelegate()
     
     var window: UIWindow?
-    var appViewController = UINavigationController()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        KeyboardHelper.defaultHelper.startObserving()
         
         AppDelegate.shared.window = UIWindow(frame: UIScreen.main.bounds)
         AppDelegate.shared.window?.backgroundColor = .black
@@ -52,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func authContinue() {
-        AppDelegate.shared.window?.rootViewController = appViewController
+        AppDelegate.shared.window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
     }
     
     func authUser() {
@@ -60,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func logOut() {
-        UserManager.current.reset()
+//        UserManager.current.reset()
         authUser()
     }
 }

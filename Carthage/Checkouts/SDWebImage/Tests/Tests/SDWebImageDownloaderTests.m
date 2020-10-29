@@ -95,6 +95,10 @@
     operation = token.downloadOperation;
     expect([operation class]).to.equal([SDWebImageTestDownloadOperation class]);
     
+    // Assert the NSOperation conforms to `SDWebImageOperation`
+    expect([NSOperation.class conformsToProtocol:@protocol(SDWebImageOperation)]).beTruthy();
+    expect([operation conformsToProtocol:@protocol(SDWebImageOperation)]).beTruthy();
+    
     // back to the original value
     downloader.config.operationClass = nil;
     token = [downloader downloadImageWithURL:imageURL3 options:0 progress:nil completed:nil];
@@ -502,7 +506,14 @@
 - (void)test23ThatDownloadRequestModifierWorks {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Download request modifier not works"];
     SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
-    SDWebImageDownloaderRequestModifier *requestModifier = [SDWebImageDownloaderRequestModifier requestModifierWithBlock:^NSURLRequest * _Nullable(NSURLRequest * _Nonnull request) {
+    
+    // Test conveniences modifier
+    SDWebImageDownloaderRequestModifier *requestModifier = [[SDWebImageDownloaderRequestModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
+    NSURLRequest *testRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:kTestJPEGURL]];
+    testRequest = [requestModifier modifiedRequestWithRequest:testRequest];
+    expect(testRequest.allHTTPHeaderFields).equal(@{@"Biz" : @"Bazz"});
+    
+    requestModifier = [SDWebImageDownloaderRequestModifier requestModifierWithBlock:^NSURLRequest * _Nullable(NSURLRequest * _Nonnull request) {
         if ([request.URL.absoluteString isEqualToString:kTestPNGURL]) {
             // Test that return a modified request
             NSMutableURLRequest *mutableRequest = [request mutableCopy];
@@ -550,8 +561,15 @@
     
     SDWebImageDownloader *downloader = [[SDWebImageDownloader alloc] init];
     
+    // Test conveniences modifier
+    SDWebImageDownloaderResponseModifier *responseModifier = [[SDWebImageDownloaderResponseModifier alloc] initWithHeaders:@{@"Biz" : @"Bazz"}];
+    NSURLResponse *testResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:kTestPNGURL] statusCode:404 HTTPVersion:@"HTTP/1.1" headerFields:nil];
+    testResponse = [responseModifier modifiedResponseWithResponse:testResponse];
+    expect(((NSHTTPURLResponse *)testResponse).allHeaderFields).equal(@{@"Biz" : @"Bazz"});
+    expect(((NSHTTPURLResponse *)testResponse).statusCode).equal(200);
+    
     // 1. Test webURL to response custom status code and header
-    SDWebImageDownloaderResponseModifier *responseModifier = [SDWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
+    responseModifier = [SDWebImageDownloaderResponseModifier responseModifierWithBlock:^NSURLResponse * _Nullable(NSURLResponse * _Nonnull response) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         NSMutableDictionary *mutableHeaderFields = [httpResponse.allHeaderFields mutableCopy];
         mutableHeaderFields[@"Foo"] = @"Bar";

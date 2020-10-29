@@ -1,7 +1,4 @@
 //
-//  UserManager.swift
-//  Hotline
-//
 //  Created by James Mudgett on 1/12/20.
 //  Copyright © 2020 Heavy Technologies, Inc. All rights reserved.
 //
@@ -9,17 +6,23 @@
 import UIKit
 import SwiftKeychainWrapper
 
-let UserKeychainIDKey = "GoodbuyID"
-let UserKeychainNameKey = "GoodbuyUsername"
-let UserKeychainPassKey = "GoodbuyUserPassword"
+let UserKeychainNameKey = "Email"
+let UserKeychainPassKey = "Password"
 
-struct LoginData: Codable {
-    let username: String?
-    let password: String?
+struct TokenData: Decodable {
+    let id: Int
+    let token: String
+    let userID: Int
 }
 
 class UserManager: NSObject {
     static let current = UserManager()
+    
+    var password: String? {
+        get {
+            return KeychainWrapper.standard.string(forKey: UserKeychainPassKey)
+        }
+    }
     
     var accessToken: String? {
         get {
@@ -47,8 +50,8 @@ class UserManager: NSObject {
         }
     }
     
-    func setUser(username: String, password: String) -> Bool {
-        return KeychainWrapper.standard.set(username, forKey: UserKeychainNameKey) &&
+    func setUser(email: String, password: String) -> Bool {
+        return KeychainWrapper.standard.set(email, forKey: UserKeychainNameKey) &&
             KeychainWrapper.standard.set(password, forKey: UserKeychainPassKey)
     }
     
@@ -57,38 +60,13 @@ class UserManager: NSObject {
         _ = KeychainWrapper.standard.removeObject(forKey: UserKeychainPassKey)
     }
     
-    func join(completion: @escaping (Bool) -> Void) {
-        guard let password = KeychainWrapper.standard.string(forKey: UserKeychainPassKey), let username = KeychainWrapper.standard.string(forKey: UserKeychainNameKey) else {
-            return
-        }
-        
-        UserAPIClient.join(username: username, password: password) { result in
-            completion(result != nil)
-        }
-    }
-    
     func login(completion: @escaping (Bool) -> Void) {
-        guard let username = KeychainWrapper.standard.string(forKey: UserKeychainNameKey), let password = KeychainWrapper.standard.string(forKey: UserKeychainPassKey) else {
+        guard let email = KeychainWrapper.standard.string(forKey: UserKeychainNameKey), let password = KeychainWrapper.standard.string(forKey: UserKeychainPassKey) else {
             completion(false)
             return
         }
         
-        UserAPIClient.login(username: username, password: password) { result in
-            if let user = result?.user {
-                self.userId = user.id
-                UserAPIClient.login(username: username, password: password) { (data) in
-                    // Save to Realm
-//                    guard let realm = try? Realm(), let user = data?.user else { return }
-//
-//                    let currentUser = User.withData(user)
-//                    try? realm.write {
-//                        realm.add(currentUser, update: .modified)
-//                    }
-                    
-                    completion(true)
-                }
-            }
-            
+        UserAPIClient.login(email: email, password: password) { result in
             completion(result != nil)
         }
     }

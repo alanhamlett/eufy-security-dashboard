@@ -1,7 +1,4 @@
 //
-//  APIClient.swift
-//  Hotline
-//
 //  Created by James Mudgett on 2/11/20.
 //  Copyright © 2020 Heavy Technologies, Inc. All rights reserved.
 //
@@ -9,21 +6,9 @@
 import Foundation
 import SwiftKeychainWrapper
 
-let apiUrl = "http://goodbuy-api.herokuapp.com/v1/"
-//let apiUrl = "http://localhost:5000/v1/"
+let apiUrl = "https://mysecurity.eufylife.com/api/v1"
 let BearerKeychainNameKey = "BearerTokenKey"
-let BearerIdKeychainNameKey = "BearerIdTokenKey"
-
-struct ResponseMessage: Codable {
-    let token: String?
-    let user: UserData?
-}
-
-struct TokenData: Decodable {
-    let id: Int
-    let token: String
-    let userID: Int
-}
+let DomainKeychainNameKey = "AccessDomain"
 
 extension String {
     func toDate() -> Date? {
@@ -34,44 +19,53 @@ extension String {
 }
 
 class APIClient {
-    class func setBearer(response: ResponseMessage) {
-        _ = KeychainWrapper.standard.set(response.token ?? "", forKey: BearerKeychainNameKey)
-        _ = KeychainWrapper.standard.set(response.user?.id ?? 0, forKey: BearerIdKeychainNameKey)
+    class func setBearer(response: LoginResponse) {
+        _ = KeychainWrapper.standard.set(response.data.authToken ?? "", forKey: BearerKeychainNameKey)
+    }
+    
+    class func setAccessDomain(response: LoginResponse) {
+        _ = KeychainWrapper.standard.set(response.data.domain ?? "", forKey: DomainKeychainNameKey)
     }
     
     class func getBearer() -> String? {
         return KeychainWrapper.standard.string(forKey: BearerKeychainNameKey)
     }
+    
+    class func getAccessDomain() -> String? {
+        return KeychainWrapper.standard.string(forKey: DomainKeychainNameKey)
+    }
 }
 
 class UserAPIClient: APIClient {
-    static func join(username: String, password: String, completion: @escaping (ResponseMessage?) -> Void) {
-        let loginData = LoginData(username: username, password: password)
+    static func login(email: String, password: String, completion: @escaping (LoginResponse?) -> Void) {
+        guard let url = URL(string: apiUrl)?.appendingPathComponent("passport/login") else { return }
         
-        guard let url = URL(string: apiUrl + "account") else { return }
+        let loginData = LoginData(email: email, password: password)
         
         var request = URLRequest(url: url)
         let session = URLSession.shared
         let jsonData = try? JSONEncoder().encode(loginData)
         
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.setValue("PostmanRuntime/7.25.0", forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
         request.httpBody = jsonData
         
-        debugPrint(request)
-
         session.dataTask(with: request) {data, response, error in
             if error != nil {
                 print(error!.localizedDescription)
+                completion(nil)
                 return
             }
 
             guard let data = data else { return }
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                debugPrint(json)
+                let data = try JSONDecoder().decode(LoginResponse.self, from: data)
                 
-                let data = try JSONDecoder().decode(ResponseMessage.self, from: data)
+                self.setBearer(response: data)
+                self.setAccessDomain(response: data)
+                
                 completion(data)
             } catch {
                 print(error.localizedDescription)
@@ -80,17 +74,19 @@ class UserAPIClient: APIClient {
         }.resume()
     }
     
-    static func login(username: String, password: String, completion: @escaping (ResponseMessage?) -> Void) {
-        guard let url = URL(string: apiUrl + "account/login") else { return }
-        let loginData = LoginData(username: username, password: password)
+    static func devices(completion: @escaping (DevicesResponse?) -> Void) {
+        guard let url = URL(string: apiUrl)?.appendingPathComponent("app/get_devs_list") else { return }
         
         var request = URLRequest(url: url)
         let session = URLSession.shared
-        let jsonData = try? JSONEncoder().encode(loginData)
+        
+        guard let bearerToken = getBearer() else { return }
         
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
+//        request.setValue("PostmanRuntime/7.25.0", forHTTPHeaderField: "User-Agent")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
+        request.setValue(bearerToken, forHTTPHeaderField: "x-auth-token")
         
         session.dataTask(with: request) {data, response, error in
             if error != nil {
@@ -100,10 +96,9 @@ class UserAPIClient: APIClient {
 
             guard let data = data else { return }
             do {
-                let data = try JSONDecoder().decode(ResponseMessage.self, from: data)
+//                debugPrint(String(data: data, encoding: String.Encoding.utf8) ?? "{}")
                 
-                self.setBearer(response: data)
-                
+                let data = try JSONDecoder().decode(DevicesResponse.self, from: data)
                 completion(data)
             } catch {
                 print(error.localizedDescription)

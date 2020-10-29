@@ -1,7 +1,4 @@
 //
-//  ButtonsHelper.swift
-//  Hotline
-//
 //  Created by James Mudgett on 1/12/20.
 //  Copyright © 2020 Heavy Technologies, Inc. All rights reserved.
 //
@@ -40,7 +37,7 @@ class RoundInterfaceButton: UIButton {
 }
 
 extension UIButton {
-    func loadingIndicator(_ show: Bool, color: UIColor = .clear) {
+    func loadingIndicator(_ show: Bool, color: UIColor = .white) {
         let tag = 808404
         if show {
             self.isEnabled = false
@@ -50,6 +47,7 @@ extension UIButton {
             indicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
             indicator.tag = tag
             indicator.color = color
+            indicator.tintColor = color
             self.addSubview(indicator)
             indicator.startAnimating()
         } else {
