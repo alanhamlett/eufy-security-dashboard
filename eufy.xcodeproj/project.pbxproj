@@ -22,6 +22,7 @@
 		5CA34CD523CC30CD00517F3A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */; };
 		5CA34CD723CC312400517F3A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Device.swift */; };
 		5CA34CD923CC315A00517F3A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* Login.swift */; };
+		5CC6F638254B54BB00622984 /* checkout.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6F637254B54BB00622984 /* checkout.sh */; };
 		5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCF9AD923F34CF7004BCDDB /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5CA34CD623CC312400517F3A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		5CA34CD823CC315A00517F3A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5CC6F637254B54BB00622984 /* checkout.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = checkout.sh; sourceTree = "<group>"; };
 		5CCF9AD923F34CF7004BCDDB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				5C686B772547809400EE6AD3 /* README.md */,
+				5CC6F637254B54BB00622984 /* checkout.sh */,
 				5C13773723D2734500F1C9CB /* Cartfile */,
 				5C200E9C23622B70007BEEB7 /* App */,
 				5C200E9B23622B70007BEEB7 /* Products */,
@@ -218,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC6F638254B54BB00622984 /* checkout.sh in Resources */,
 				5C200EAA23622B71007BEEB7 /* LaunchScreen.storyboard in Resources */,
 				5C200EA423622B71007BEEB7 /* Assets.xcassets in Resources */,
 				5C686B782547809400EE6AD3 /* README.md in Resources */,
