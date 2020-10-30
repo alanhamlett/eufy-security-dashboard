@@ -40,12 +40,18 @@ class HomeViewController: UIViewController {
                     }
                 }
             }
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
         }
     }
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
+        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 16
+        layout.estimatedItemSize = CGSize(width: 90, height: 220)
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
@@ -55,6 +61,8 @@ class HomeViewController: UIViewController {
         view.alwaysBounceVertical = true
         view.register(CameraViewCell.self, forCellWithReuseIdentifier: "CameraCell")
         view.register(SensorViewCell.self, forCellWithReuseIdentifier: "SensorCell")
+        view.dataSource = self
+        view.delegate = self
         return view
     }()
     
@@ -66,10 +74,14 @@ class HomeViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(logOut))
         
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         refreshTimer?.invalidate()
         refreshTimer = Timer(timeInterval: 60.0, repeats: true) { [weak self](timer) in
             self?.getDeviceData()
-            self?.collectionView.reloadData()
         }
         refreshTimer?.fire()
     }
@@ -111,7 +123,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraCell", for: indexPath)
             let data = cameras[indexPath.row]
-//            (cell as? CameraViewCell)?.setData(data: data)
+            (cell as? CameraViewCell)?.setData(data: data)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
