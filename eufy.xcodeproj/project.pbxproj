@@ -17,12 +17,13 @@
 		5CA34C9D23CC28C700517F3A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34C9C23CC28C700517F3A /* LoginViewController.swift */; };
 		5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34C9E23CC290C00517F3A /* HomeViewController.swift */; };
 		5CA34CAB23CC2A0D00517F3A /* ButtonsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */; };
-		5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CB223CC2ACC00517F3A /* UserIconView.swift */; };
 		5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CBE23CC2D0000517F3A /* UserManager.swift */; };
 		5CA34CD523CC30CD00517F3A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */; };
 		5CA34CD723CC312400517F3A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Device.swift */; };
 		5CA34CD923CC315A00517F3A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* Login.swift */; };
 		5CC6F638254B54BB00622984 /* checkout.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6F637254B54BB00622984 /* checkout.sh */; };
+		5CC6F650254BD32C00622984 /* CameraViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F64F254BD32C00622984 /* CameraViewCell.swift */; };
+		5CC6F653254BD33A00622984 /* SensorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F652254BD33A00622984 /* SensorViewCell.swift */; };
 		5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCF9AD923F34CF7004BCDDB /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,12 +42,13 @@
 		5CA34C9C23CC28C700517F3A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CA34C9E23CC290C00517F3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsHelper.swift; sourceTree = "<group>"; };
-		5CA34CB223CC2ACC00517F3A /* UserIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconView.swift; sourceTree = "<group>"; };
 		5CA34CBE23CC2D0000517F3A /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5CA34CD623CC312400517F3A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		5CA34CD823CC315A00517F3A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		5CC6F637254B54BB00622984 /* checkout.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = checkout.sh; sourceTree = "<group>"; };
+		5CC6F64F254BD32C00622984 /* CameraViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewCell.swift; sourceTree = "<group>"; };
+		5CC6F652254BD33A00622984 /* SensorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewCell.swift; sourceTree = "<group>"; };
 		5CCF9AD923F34CF7004BCDDB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +113,8 @@
 		5CA34CC123CC2D2900517F3A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5CA34CB223CC2ACC00517F3A /* UserIconView.swift */,
+				5CC6F64F254BD32C00622984 /* CameraViewCell.swift */,
+				5CC6F652254BD33A00622984 /* SensorViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -260,7 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CA34CB323CC2ACC00517F3A /* UserIconView.swift in Sources */,
+				5CC6F653254BD33A00622984 /* SensorViewCell.swift in Sources */,
+				5CC6F650254BD32C00622984 /* CameraViewCell.swift in Sources */,
 				5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */,
 				5CA34CD923CC315A00517F3A /* Login.swift in Sources */,
 				5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */,

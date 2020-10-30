@@ -8,6 +8,9 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
+    private var cameras: [DevicesResponseData] = []
+    private var sensors: [DevicesResponseData] = []
+    
     private func getDeviceData() {
         UserAPIClient.devices { [weak self](response) in
             // API returns banned when access token is expired.
@@ -21,19 +24,37 @@ class HomeViewController: UIViewController {
                 }
                 return
             }
+            
+            guard let data = response.data else { return } // should probably print that no devices were loaded.
+            
+            // distribute data to proper section
+            for item in data {
+                if let type = item.deviceType {
+                    switch type {
+                    case DeviceType.camera.rawValue:
+                        self?.cameras.append(item)
+                    case DeviceType.door.rawValue, DeviceType.motion.rawValue:
+                        self?.sensors.append(item)
+                    default:
+                        break
+                    }
+                }
+            }
         }
     }
     
     private lazy var collectionView: UICollectionView = {
-        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        
+        
+        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
-        view.contentInset = UIEdgeInsets(top: 60, left: 16, bottom: 0, right: 16)
         view.showsVerticalScrollIndicator = true
         view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = false
         view.alwaysBounceVertical = true
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CameraCell")
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SensorCell")
+        view.register(CameraViewCell.self, forCellWithReuseIdentifier: "CameraCell")
+        view.register(SensorViewCell.self, forCellWithReuseIdentifier: "SensorCell")
         return view
     }()
     
@@ -83,23 +104,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return section == 0 ? cameras.count : sensors.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraCell", for: indexPath)
-//            if let recordings = recordingsForFilterMode(filterMode) {
-//                let data = recordings[indexPath.row]
-//                (cell as? RecordingGridCell)?.setData(data: data)
-//            }
+            let data = cameras[indexPath.row]
+//            (cell as? CameraViewCell)?.setData(data: data)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-//            if let recordings = recordingsForFilterMode(filterMode) {
-//                let data = recordings[indexPath.row]
-//                (cell as? RecordingGridCell)?.setData(data: data)
-//            }
+            let data = sensors[indexPath.row]
+//            (cell as? SensorViewCell)?.setData(data: data)
             return cell
         }
     }

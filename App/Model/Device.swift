@@ -12,9 +12,11 @@ struct DevicesResponse: Codable {
     let data: [DevicesResponseData]?
 }
 
-// 1: camera
-// 2: door sensor
-// 10: motion sensor
+enum DeviceType: Int {
+    case camera = 1
+    case door = 2
+    case motion = 10
+}
 
 struct DevicesResponseData: Codable {
     let deviceId: Int?
