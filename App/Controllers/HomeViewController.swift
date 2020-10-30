@@ -24,16 +24,16 @@ class HomeViewController: UIViewController {
                 }
                 return
             }
-            
+
             guard let data = response.data else { return } // should probably print that no devices were loaded.
-            
+
             // distribute data to proper section
             for item in data {
                 if let type = item.deviceType {
                     switch type {
-                    case DeviceType.camera.rawValue:
+                    case DeviceType.camera:
                         self?.cameras.append(item)
-                    case DeviceType.door.rawValue, DeviceType.motion.rawValue:
+                    case DeviceType.door, DeviceType.motion:
                         self?.sensors.append(item)
                     default:
                         break
@@ -45,7 +45,6 @@ class HomeViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.backgroundColor = .clear

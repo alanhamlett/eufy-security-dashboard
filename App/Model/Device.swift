@@ -12,16 +12,23 @@ struct DevicesResponse: Codable {
     let data: [DevicesResponseData]?
 }
 
-enum DeviceType: Int {
+enum DeviceType: Int, Codable {
     case camera = 1
     case door = 2
     case motion = 10
+    case other = 0
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let raw = try container.decode(Int.self)
+        self = DeviceType(rawValue: raw) ?? .other
+    }
 }
 
 struct DevicesResponseData: Codable {
     let deviceId: Int?
     let deviceName: String?
-    let deviceType: Int?
+    let deviceType: DeviceType?
     let thumbnail: String?
     let timestamp: Int?
     
