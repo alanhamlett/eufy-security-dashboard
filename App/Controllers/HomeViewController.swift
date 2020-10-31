@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
     private var cameras: [DevicesResponseData] = []
     private var sensors: [DevicesResponseData] = []
     
-    private func getDeviceData() {
+    @objc func getDeviceData() {
         UserAPIClient.devices { [weak self](response) in
             // API returns banned when access token is expired.
             guard let response = response, response.banned == nil else {
@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
 
             guard let data = response.data else { return } // should probably print that no devices were loaded.
 
+            self?.cameras = []
+            self?.sensors = []
+            
             // distribute data to proper section
             for item in data {
                 if let type = item.deviceType {
@@ -67,7 +70,7 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private var refreshTimer: Timer?
+    private var refreshTimer = Timer()
     
     override func viewDidLoad() {
         title = "Home"
@@ -80,11 +83,10 @@ class HomeViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        refreshTimer?.invalidate()
-        refreshTimer = Timer(timeInterval: 60.0, repeats: true) { [weak self](timer) in
-            self?.getDeviceData()
-        }
-        refreshTimer?.fire()
+        refreshTimer.invalidate()
+        refreshTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(getDeviceData), userInfo: nil, repeats: true)
+        
+        getDeviceData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +98,7 @@ class HomeViewController: UIViewController {
     }
     
     deinit {
-        refreshTimer?.invalidate()
+        refreshTimer.invalidate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
