@@ -126,7 +126,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             (cell as? CameraViewCell)?.setData(data: data)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SensorCell", for: indexPath)
             let data = sensors[indexPath.row]
 //            (cell as? SensorViewCell)?.setData(data: data)
             return cell
