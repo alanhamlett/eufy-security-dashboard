@@ -41,8 +41,8 @@ class CameraViewCell: UICollectionViewCell {
         
         thumbnail.snp.makeConstraints {
             $0.top.left.right.equalTo(0)
-            $0.width.equalTo(300)
-            $0.height.equalTo(200)
+            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16)
+            $0.height.equalTo(UIScreen.main.bounds.height / 2.5)
         }
         
         titleView.snp.makeConstraints {
@@ -109,18 +109,10 @@ class CameraViewCell: UICollectionViewCell {
                     }
                 })
         
-//        if image.size.width > image.size.height {
-//            thumbnail.snp.remakeConstraints { make in
-//                make.width.equalTo(148)
-//                make.height.equalTo(90)
-//                make.top.left.right.equalTo(0)
-//            }
-//        } else {
-//            thumbnail.snp.remakeConstraints { make in
-//                make.width.equalTo(90)
-//                make.height.equalTo(148)
-//                make.top.left.right.equalTo(0)
-//            }
-//        }
+        thumbnail.snp.remakeConstraints {
+            $0.top.left.right.equalTo(0)
+            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16)
+            $0.height.equalTo(UIScreen.main.bounds.height / 2.5)
+        }
     }
 }

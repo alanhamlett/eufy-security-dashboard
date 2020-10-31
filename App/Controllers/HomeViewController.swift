@@ -49,12 +49,13 @@ class HomeViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 16
-        layout.minimumLineSpacing = 16
-        layout.estimatedItemSize = CGSize(width: 90, height: 220)
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
+        view.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         view.showsVerticalScrollIndicator = true
         view.showsHorizontalScrollIndicator = false
         view.isPagingEnabled = false
@@ -107,6 +108,20 @@ class HomeViewController: UIViewController {
             AppDelegate.shared.logOut()
         }
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateCollectionLayout()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateCollectionLayout()
+    }
+    
+    private func updateCollectionLayout() {
+        collectionView.reloadData()
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -128,7 +143,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SensorCell", for: indexPath)
             let data = sensors[indexPath.row]
-//            (cell as? SensorViewCell)?.setData(data: data)
+            (cell as? SensorViewCell)?.setData(data: data)
             return cell
         }
     }
