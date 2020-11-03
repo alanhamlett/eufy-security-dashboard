@@ -36,8 +36,10 @@ class HomeViewController: UIViewController {
                     switch type {
                     case DeviceType.camera:
                         self?.cameras.append(item)
-                    case DeviceType.door, DeviceType.motion:
+                    case DeviceType.door:
                         self?.sensors.append(item)
+                    case DeviceType.motion:
+                        break
                     default:
                         break
                     }

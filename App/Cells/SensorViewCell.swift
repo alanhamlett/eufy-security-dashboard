@@ -57,6 +57,62 @@ class SensorViewCell: UICollectionViewCell {
         }
     }
     
+    var sensorTypeTitle: String {
+        get {
+            if let type = data?.deviceType {
+                switch type {
+                case DeviceType.door:
+                    return "Door Sensor"
+                case DeviceType.motion:
+                    return "Motion Sensor"
+                default:
+                    break
+                }
+            }
+            return "Sensor"
+        }
+    }
+    
+    var deviceName: String {
+        get {
+            if let name = data?.deviceName {
+                return name
+            }
+            return sensorTypeTitle
+        }
+    }
+    
+    var deviceState: DoorSensorState {
+        get {
+            guard
+                let data = data,
+                let params = data.params
+            else { return DoorSensorState.unknown }
+            guard let param = params.first(where: { (param) -> Bool in
+                param.type == DeviceParamType.doorSensorState
+            }) else { return DoorSensorState.unknown }
+            if param.value == "1" {
+                return DoorSensorState.open
+            }
+            if param.value == "0" {
+                return DoorSensorState.closed
+            }
+            return DoorSensorState.unknown
+        }
+    }
+    
+    var isOpen: Bool {
+        get {
+            return deviceState == DoorSensorState.open
+        }
+    }
+    
+    var isClosed: Bool {
+        get {
+            return deviceState == DoorSensorState.closed
+        }
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         titleView.text = ""
@@ -73,6 +129,10 @@ class SensorViewCell: UICollectionViewCell {
     func setData(data: DevicesResponseData) {
         self.data = data
         
-        titleView.text = data.deviceName
+        if isClosed {
+            titleView.text = deviceName
+        } else {
+            titleView.text = "\(deviceName) (\(deviceState.rawValue))"
+        }
     }
 }
