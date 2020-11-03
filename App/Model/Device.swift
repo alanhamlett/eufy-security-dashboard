@@ -25,12 +25,44 @@ enum DeviceType: Int, Codable {
     }
 }
 
+enum DeviceParamType: Int, Codable {
+    case doorSensorState = 1550
+    case unknown = 0
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let raw = try container.decode(Int.self)
+        self = DeviceParamType(rawValue: raw) ?? .unknown
+    }
+}
+
+struct DeviceParam: Codable {
+    let type: DeviceParamType
+    let value: String?
+    let updatedAt: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case type = "param_type"
+        case value = "param_value"
+        case updatedAt = "update_time"
+    }
+}
+
+enum DoorSensorState: String {
+    case open = "Open"
+    case closed = "Closed"
+    case unknown = "Unknown"
+}
+
 struct DevicesResponseData: Codable {
     let deviceId: Int?
     let deviceName: String?
     let deviceType: DeviceType?
     let thumbnail: String?
     let timestamp: Int?
+    let params: [DeviceParam]?
+
+    //let sensorState: DoorSensorState?
     
     // Streaming request data needed
     let deviceSN: String?
@@ -44,5 +76,6 @@ struct DevicesResponseData: Codable {
         case timestamp = "update_time"
         case deviceSN = "device_sn"
         case stationSN = "station_sn"
+        case params = "params"
     }
 }
