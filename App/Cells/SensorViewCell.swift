@@ -17,6 +17,7 @@ class SensorViewCell: UICollectionViewCell {
         label.textColor = .black
         label.numberOfLines = 1
         label.textAlignment = .left
+        label.font = UIFont.font(ofSize: .title2, weight: .semibold)
         return label
     }()
     
@@ -30,12 +31,16 @@ class SensorViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = true
-        contentView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        contentView.backgroundColor = UIColor(white: 0.98, alpha: 1)
         
         titleView.snp.makeConstraints {
-            $0.top.bottom.left.right.equalToSuperview().inset(10)
-            $0.width.greaterThanOrEqualTo(130).priority(.medium)
+            $0.top.bottom.right.equalTo(0)
+            $0.left.equalTo(20)
+            $0.width.equalTo(UIScreen.main.bounds.width / 4 - 16 * 2)
+            $0.height.equalTo(60)
         }
+        
+        updateStyles()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -44,27 +49,25 @@ class SensorViewCell: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            if isHighlighted {
-                
-            } else {
-                
-            }
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                
-            } else {
-                
-            }
         }
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         titleView.text = ""
+        
+        updateStyles()
+    }
+    
+    func updateStyles() {
+        let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        titleView.textColor = dark ? .white : .black
+        contentView.backgroundColor = dark ? UIColor(white: 0.1, alpha: 1) : UIColor(white: 0.98, alpha: 1)
     }
     
     func setData(data: DevicesResponseData) {

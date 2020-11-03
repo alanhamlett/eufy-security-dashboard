@@ -57,7 +57,6 @@ class HomeViewController: UIViewController {
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        view.backgroundColor = .clear
         view.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         view.showsVerticalScrollIndicator = true
         view.showsHorizontalScrollIndicator = false
@@ -83,7 +82,6 @@ class HomeViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        refreshTimer.invalidate()
         refreshTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(getDeviceData), userInfo: nil, repeats: true)
         
         getDeviceData()
@@ -114,6 +112,9 @@ class HomeViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateCollectionLayout()
+        
+        let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        collectionView.backgroundColor = dark ? .black : .white
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -126,7 +127,7 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -150,5 +151,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return section == 1 ? UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0) : .zero
+    }
 }

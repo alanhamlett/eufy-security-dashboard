@@ -21,6 +21,7 @@
 		5CA34CD523CC30CD00517F3A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */; };
 		5CA34CD723CC312400517F3A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Device.swift */; };
 		5CA34CD923CC315A00517F3A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* Login.swift */; };
+		5CB4F1E92551E7C10040C766 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4F1E82551E7C10040C766 /* UIFontExtensions.swift */; };
 		5CC6F638254B54BB00622984 /* checkout.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6F637254B54BB00622984 /* checkout.sh */; };
 		5CC6F650254BD32C00622984 /* CameraViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F64F254BD32C00622984 /* CameraViewCell.swift */; };
 		5CC6F653254BD33A00622984 /* SensorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F652254BD33A00622984 /* SensorViewCell.swift */; };
@@ -46,6 +47,7 @@
 		5CA34CD423CC30CD00517F3A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5CA34CD623CC312400517F3A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		5CA34CD823CC315A00517F3A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5CB4F1E82551E7C10040C766 /* UIFontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		5CC6F637254B54BB00622984 /* checkout.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = checkout.sh; sourceTree = "<group>"; };
 		5CC6F64F254BD32C00622984 /* CameraViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewCell.swift; sourceTree = "<group>"; };
 		5CC6F652254BD33A00622984 /* SensorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewCell.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				5CA34CAA23CC2A0D00517F3A /* ButtonsHelper.swift */,
 				5CCF9AD923F34CF7004BCDDB /* APIClient.swift */,
+				5CB4F1E82551E7C10040C766 /* UIFontExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				5CC6F650254BD32C00622984 /* CameraViewCell.swift in Sources */,
 				5CA34C9F23CC290C00517F3A /* HomeViewController.swift in Sources */,
 				5CA34CD923CC315A00517F3A /* Login.swift in Sources */,
+				5CB4F1E92551E7C10040C766 /* UIFontExtensions.swift in Sources */,
 				5CA34CBF23CC2D0000517F3A /* UserManager.swift in Sources */,
 				5CA34C9D23CC28C700517F3A /* LoginViewController.swift in Sources */,
 				5CCF9ADA23F34CF7004BCDDB /* APIClient.swift in Sources */,

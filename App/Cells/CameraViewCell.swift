@@ -18,13 +18,14 @@ class CameraViewCell: UICollectionViewCell {
         label.textColor = .black
         label.numberOfLines = 3
         label.textAlignment = .left
+        label.font = UIFont.font(ofSize: .title3, weight: .semibold)
         return label
     }()
     
     private lazy var thumbnail: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = 4
+        image.layer.cornerRadius = 5
         image.layer.masksToBounds = true
         image.backgroundColor = .black
         return image
@@ -58,21 +59,11 @@ class CameraViewCell: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            if isHighlighted {
-                thumbnail.alpha = 0.6
-            } else {
-                thumbnail.alpha = 1
-            }
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                thumbnail.alpha = 0.6
-            } else {
-                thumbnail.alpha = 1
-            }
         }
     }
     
@@ -80,6 +71,13 @@ class CameraViewCell: UICollectionViewCell {
         super.prepareForReuse()
         thumbnail.image = nil
         titleView.text = ""
+        
+        updateStyles()
+    }
+    
+    func updateStyles() {
+        let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        titleView.textColor = dark ? .white : .black
     }
     
     func setData(data: DevicesResponseData) {

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Foundation
 
 var CurrentUser: UserManager {
     get {
@@ -54,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func logOut() {
-//        UserManager.current.reset()
         authUser()
     }
 }
