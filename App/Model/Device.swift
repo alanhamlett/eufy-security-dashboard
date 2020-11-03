@@ -61,8 +61,6 @@ struct DevicesResponseData: Codable {
     let thumbnail: String?
     let timestamp: Int?
     let params: [DeviceParam]?
-
-    //let sensorState: DoorSensorState?
     
     // Streaming request data needed
     let deviceSN: String?
