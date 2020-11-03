@@ -18,7 +18,7 @@ class CameraViewCell: UICollectionViewCell {
         label.textColor = .black
         label.numberOfLines = 3
         label.textAlignment = .left
-        label.font = UIFont.font(ofSize: .title3, weight: .semibold)
+        label.font = UIFont.font(ofSize: .title1, weight: .semibold)
         return label
     }()
     
@@ -47,7 +47,7 @@ class CameraViewCell: UICollectionViewCell {
         }
         
         titleView.snp.makeConstraints {
-            $0.left.right.equalTo(0)
+            $0.left.right.equalToSuperview().inset(20)
             $0.top.equalTo(thumbnail.snp.bottom)
             $0.bottom.equalTo(0)
         }
@@ -94,7 +94,7 @@ class CameraViewCell: UICollectionViewCell {
             placeholder: UIImage(named: "placeholderImage"),
             options: [
                 .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(0.2)),
+                .transition(.none),
                 .cacheOriginalImage
             ], completionHandler:
                 {

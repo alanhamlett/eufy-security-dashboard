@@ -21,6 +21,8 @@ class SensorViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let openIcon = UIImageView(image: UIImage(named: "warning"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,16 +30,25 @@ class SensorViewCell: UICollectionViewCell {
         backgroundColor = .clear
         
         contentView.addSubview(titleView)
+        contentView.addSubview(openIcon)
+        
+        openIcon.isHidden = true
         
         contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = true
-        contentView.backgroundColor = UIColor(white: 0.98, alpha: 1)
+        contentView.layer.borderWidth = 1
         
         titleView.snp.makeConstraints {
             $0.top.bottom.right.equalTo(0)
             $0.left.equalTo(20)
             $0.width.equalTo(UIScreen.main.bounds.width / 4 - 16 * 2)
             $0.height.equalTo(60)
+        }
+        
+        openIcon.snp.makeConstraints {
+            $0.right.equalToSuperview().inset(20)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(28)
         }
         
         updateStyles()
@@ -123,16 +134,13 @@ class SensorViewCell: UICollectionViewCell {
     func updateStyles() {
         let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
         titleView.textColor = dark ? .white : .black
-        contentView.backgroundColor = dark ? UIColor(white: 0.1, alpha: 1) : UIColor(white: 0.98, alpha: 1)
+        contentView.backgroundColor = dark ? UIColor(white: 0.08, alpha: 1) : UIColor(white: 0.98, alpha: 1)
+        contentView.layer.borderColor = dark ? UIColor(white: 0.3, alpha: 1).cgColor : UIColor(white: 0.7, alpha: 1).cgColor
     }
     
     func setData(data: DevicesResponseData) {
         self.data = data
-        
-        if isClosed {
-            titleView.text = deviceName
-        } else {
-            titleView.text = "\(deviceName) (\(deviceState.rawValue))"
-        }
+        titleView.text = deviceName
+        openIcon.isHidden = isClosed
     }
 }

@@ -22,6 +22,7 @@
 		5CA34CD723CC312400517F3A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD623CC312400517F3A /* Device.swift */; };
 		5CA34CD923CC315A00517F3A /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA34CD823CC315A00517F3A /* Login.swift */; };
 		5CB4F1E92551E7C10040C766 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4F1E82551E7C10040C766 /* UIFontExtensions.swift */; };
+		5CB4F1F925520B0D0040C766 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4F1F825520B0D0040C766 /* SettingsViewController.swift */; };
 		5CC6F638254B54BB00622984 /* checkout.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6F637254B54BB00622984 /* checkout.sh */; };
 		5CC6F650254BD32C00622984 /* CameraViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F64F254BD32C00622984 /* CameraViewCell.swift */; };
 		5CC6F653254BD33A00622984 /* SensorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6F652254BD33A00622984 /* SensorViewCell.swift */; };
@@ -30,7 +31,7 @@
 
 /* Begin PBXFileReference section */
 		5C13773723D2734500F1C9CB /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		5C200E9A23622B70007BEEB7 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C200E9A23622B70007BEEB7 /* Eufy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eufy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C200E9D23622B70007BEEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C200EA323622B71007BEEB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C200EA923622B71007BEEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		5CA34CD623CC312400517F3A /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		5CA34CD823CC315A00517F3A /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		5CB4F1E82551E7C10040C766 /* UIFontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
+		5CB4F1F825520B0D0040C766 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		5CC6F637254B54BB00622984 /* checkout.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = checkout.sh; sourceTree = "<group>"; };
 		5CC6F64F254BD32C00622984 /* CameraViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewCell.swift; sourceTree = "<group>"; };
 		5CC6F652254BD33A00622984 /* SensorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewCell.swift; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		5C200E9B23622B70007BEEB7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5C200E9A23622B70007BEEB7 /* Debug.app */,
+				5C200E9A23622B70007BEEB7 /* Eufy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 			children = (
 				5CA34C9C23CC28C700517F3A /* LoginViewController.swift */,
 				5CA34C9E23CC290C00517F3A /* HomeViewController.swift */,
+				5CB4F1F825520B0D0040C766 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -171,9 +174,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5C200E9923622B70007BEEB7 /* Debug */ = {
+		5C200E9923622B70007BEEB7 /* Eufy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5C200EAE23622B71007BEEB7 /* Build configuration list for PBXNativeTarget "Debug" */;
+			buildConfigurationList = 5C200EAE23622B71007BEEB7 /* Build configuration list for PBXNativeTarget "Eufy" */;
 			buildPhases = (
 				5C200E9623622B70007BEEB7 /* Sources */,
 				5C200E9723622B70007BEEB7 /* Frameworks */,
@@ -184,9 +187,9 @@
 			);
 			dependencies = (
 			);
-			name = Debug;
+			name = Eufy;
 			productName = Notes;
-			productReference = 5C200E9A23622B70007BEEB7 /* Debug.app */;
+			productReference = 5C200E9A23622B70007BEEB7 /* Eufy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -217,7 +220,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5C200E9923622B70007BEEB7 /* Debug */,
+				5C200E9923622B70007BEEB7 /* Eufy */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +280,7 @@
 				5CA34CD723CC312400517F3A /* Device.swift in Sources */,
 				5C200E9E23622B70007BEEB7 /* AppDelegate.swift in Sources */,
 				5CA34CAB23CC2A0D00517F3A /* ButtonsHelper.swift in Sources */,
+				5CB4F1F925520B0D0040C766 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5C200EAE23622B71007BEEB7 /* Build configuration list for PBXNativeTarget "Debug" */ = {
+		5C200EAE23622B71007BEEB7 /* Build configuration list for PBXNativeTarget "Eufy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5C200EAF23622B71007BEEB7 /* Debug */,

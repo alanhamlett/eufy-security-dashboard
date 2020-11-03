@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5C200E9923622B70007BEEB7"
-               BuildableName = "Debug.app"
-               BlueprintName = "Debug"
+               BuildableName = "Eufy.app"
+               BlueprintName = "Eufy"
                ReferencedContainer = "container:eufy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5C200E9923622B70007BEEB7"
-            BuildableName = "Debug.app"
-            BlueprintName = "Debug"
+            BuildableName = "Eufy.app"
+            BlueprintName = "Eufy"
             ReferencedContainer = "container:eufy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5C200E9923622B70007BEEB7"
-            BuildableName = "Debug.app"
-            BlueprintName = "Debug"
+            BuildableName = "Eufy.app"
+            BlueprintName = "Eufy"
             ReferencedContainer = "container:eufy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
