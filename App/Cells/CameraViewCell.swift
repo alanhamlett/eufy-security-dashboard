@@ -94,7 +94,7 @@ class CameraViewCell: UICollectionViewCell {
             placeholder: UIImage(named: "placeholderImage"),
             options: [
                 .scaleFactor(UIScreen.main.scale),
-                .transition(.none),
+                .transition(.fade(0.1)),
                 .cacheOriginalImage
             ], completionHandler:
                 {
