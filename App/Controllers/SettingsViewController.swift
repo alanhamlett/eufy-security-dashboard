@@ -42,6 +42,9 @@ class SettingsViewController: UIViewController {
         circularSlider.diskFillColor = .clear
         circularSlider.diskColor = .clear
         circularSlider.trackFillColor = .black
+        circularSlider.lineWidth = 22
+        circularSlider.backtrackLineWidth = 22
+        circularSlider.thumbRadius = 22
         circularSlider.backgroundColor = .clear
         circularSlider.addTarget(self, action: #selector(changeSlider), for: .valueChanged)
         
@@ -51,7 +54,7 @@ class SettingsViewController: UIViewController {
         
         circularSlider.snp.makeConstraints {
             $0.center.equalToSuperview()
-            $0.size.equalTo(300)
+            $0.size.equalTo(400)
         }
         
         refreshLabel.snp.makeConstraints {
