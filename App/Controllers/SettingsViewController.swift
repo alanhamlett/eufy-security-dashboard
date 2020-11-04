@@ -88,6 +88,7 @@ class SettingsViewController: UIViewController {
         let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
         view.backgroundColor = dark ? .black : .white
         circularSlider.trackFillColor = dark ? .white : .black
+        circularSlider.trackColor = dark ? UIColor(white: 1, alpha: 0.3) : UIColor(white: 0, alpha: 0.3)
         refreshLabel.textColor = dark ? .white : .black
         userLabel.textColor = dark ? UIColor(white: 1, alpha: 0.5) : UIColor(white: 0, alpha: 0.5)
     }
