@@ -59,7 +59,7 @@ struct DevicesResponseData: Codable {
     let deviceName: String?
     let deviceType: DeviceType?
     let thumbnail: String?
-    let timestamp: Int?
+    let thumbnailUpdatedAt: Int?
     let params: [DeviceParam]?
     
     // Streaming request data needed
@@ -71,7 +71,7 @@ struct DevicesResponseData: Codable {
         case deviceName = "device_name"
         case deviceType = "device_type"
         case thumbnail = "cover_path"
-        case timestamp = "update_time"
+        case thumbnailUpdatedAt = "cover_time"
         case deviceSN = "device_sn"
         case stationSN = "station_sn"
         case params = "params"
