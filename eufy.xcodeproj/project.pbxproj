@@ -181,7 +181,7 @@
 				5C200E9623622B70007BEEB7 /* Sources */,
 				5C200E9723622B70007BEEB7 /* Frameworks */,
 				5C200E9823622B70007BEEB7 /* Resources */,
-				5C200EB12362B0C9007BEEB7 /* ShellScript */,
+				5C200EB12362B0C9007BEEB7 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -242,7 +242,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5C200EB12362B0C9007BEEB7 /* ShellScript */ = {
+		5C200EB12362B0C9007BEEB7 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,7 +253,9 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftKeychainWrapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HGCircularSlider.framework",
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (

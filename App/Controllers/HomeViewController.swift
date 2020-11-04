@@ -77,20 +77,28 @@ class HomeViewController: UIViewController {
         title = "Home"
         view.backgroundColor = .white
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action: #selector(logOut))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settings))
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(getDeviceData), userInfo: nil, repeats: true)
-        
         getDeviceData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        var refreshTime = 60
+        if UserDefaults.standard.bool(forKey: "customRefresh") {
+            refreshTime = UserDefaults.standard.integer(forKey: "refreshTime")
+        }
+        
+        refreshTimer.invalidate()
+        refreshTimer = Timer.scheduledTimer(timeInterval: Double(refreshTime), target: self, selector: #selector(getDeviceData), userInfo: nil, repeats: true)
+        
+        updateStyles()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,12 +119,15 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @objc func settings() {
+        let settingsViewController = SettingsViewController()
+        navigationController?.pushViewController(settingsViewController, animated: true)
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateCollectionLayout()
-        
-        let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
-        collectionView.backgroundColor = dark ? .black : .white
+        updateStyles()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -126,6 +137,11 @@ class HomeViewController: UIViewController {
     
     private func updateCollectionLayout() {
         collectionView.reloadData()
+    }
+    
+    private func updateStyles() {
+        let dark = UIScreen.main.traitCollection.userInterfaceStyle == .dark
+        collectionView.backgroundColor = dark ? .black : .white
     }
 }
 
