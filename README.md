@@ -1,11 +1,15 @@
-# eufy-ios
-Universal iOS app for eufy cameras.
+# Eufy Security Dashboard
 
-1. Login to existing eufy account.
-2. Displays grid thumbnails of all eufy cameras (refreshed every 30 secons.)
-3. Displays motion sensor status of all cameras.
-4. Log out
+iOS app for Eufy Security cameras and door sensors.
+
+![example](/example.png?raw=true)
+
+## Features
+
+* Login to existing eufy account.
+* Display thumbnails of eufy cameras, auto-refreshing for new recordings.
+* Display door sensors open/closed status.
 
 ## Pre-build
 
-run ```sh checkout.sh```
+Run ```sh checkout.sh```
