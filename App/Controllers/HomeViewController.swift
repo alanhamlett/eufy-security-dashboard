@@ -76,7 +76,7 @@ class HomeViewController: UIViewController {
     private var refreshTimer = Timer()
     
     override func viewDidLoad() {
-        title = "Home"
+        title = "Home" // TODO: support multiple base stations and use station name instead of hard-coding
         view.backgroundColor = .white
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settings))
