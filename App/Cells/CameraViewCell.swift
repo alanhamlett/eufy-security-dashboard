@@ -46,7 +46,7 @@ class CameraViewCell: UICollectionViewCell {
         }
         
         titleView.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(20)
+            $0.left.right.equalToSuperview().inset(10)
             $0.top.equalTo(thumbnail.snp.bottom)
             $0.bottom.equalTo(0)
         }
@@ -104,6 +104,7 @@ class CameraViewCell: UICollectionViewCell {
                     case .failure(let error):
                         print("Job failed: \(error.localizedDescription)")
                     }
+                    self.layoutIfNeeded()
                 })
         
         thumbnail.snp.remakeConstraints {

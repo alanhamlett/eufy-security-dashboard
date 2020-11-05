@@ -172,6 +172,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return section == 1 ? UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0) : .zero
+        return section == 1 ? UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0) : .zero
     }
 }
