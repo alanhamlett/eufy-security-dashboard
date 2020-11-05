@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class CameraViewCell: UICollectionViewCell {
-    private var data: DevicesResponseData?
+    private var device: DevicesResponseData?
     
     private lazy var titleView: UILabel = {
         let label = UILabel()
@@ -79,12 +79,12 @@ class CameraViewCell: UICollectionViewCell {
         titleView.textColor = dark ? .white : .black
     }
     
-    func setData(data: DevicesResponseData) {
-        self.data = data
+    func setData(device: DevicesResponseData) {
+        self.device = device
         
-        titleView.text = data.deviceName
+        titleView.text = device.name
         
-        guard let thumbnailUrl = data.thumbnail else { return }
+        guard let thumbnailUrl = ThumbnailManager.shared[device] else { return }
         
         let url = URL(string: thumbnailUrl)
         thumbnail.kf.indicatorType = .activity

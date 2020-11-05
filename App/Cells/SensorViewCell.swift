@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SensorViewCell: UICollectionViewCell {
-    private var data: DevicesResponseData?
+    private var device: DevicesResponseData?
     
     private lazy var titleView: UILabel = {
         let label = UILabel()
@@ -69,7 +69,7 @@ class SensorViewCell: UICollectionViewCell {
     
     var sensorTypeTitle: String {
         get {
-            if let type = data?.deviceType {
+            if let type = device?.type {
                 switch type {
                 case DeviceType.door:
                     return "Door Sensor"
@@ -85,7 +85,7 @@ class SensorViewCell: UICollectionViewCell {
     
     var deviceName: String {
         get {
-            if let name = data?.deviceName {
+            if let name = device?.name {
                 return name
             }
             return sensorTypeTitle
@@ -95,8 +95,8 @@ class SensorViewCell: UICollectionViewCell {
     var deviceState: DoorSensorState {
         get {
             guard
-                let data = data,
-                let params = data.params
+                let device = device,
+                let params = device.params
             else { return DoorSensorState.unknown }
             guard let param = params.first(where: { (param) -> Bool in
                 param.type == DeviceParamType.doorSensorState
@@ -137,8 +137,8 @@ class SensorViewCell: UICollectionViewCell {
         contentView.layer.borderColor = dark ? UIColor(white: 0.3, alpha: 1).cgColor : UIColor(white: 0.7, alpha: 1).cgColor
     }
     
-    func setData(data: DevicesResponseData) {
-        self.data = data
+    func setData(device: DevicesResponseData) {
+        self.device = device
         titleView.text = deviceName
         openIcon.isHidden = isClosed
     }

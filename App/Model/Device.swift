@@ -57,25 +57,25 @@ enum DoorSensorState: String {
 }
 
 struct DevicesResponseData: Codable {
-    let deviceId: Int?
-    let deviceName: String?
-    let deviceType: DeviceType?
+    let id: Int?
+    let name: String?
+    let type: DeviceType?
     let thumbnail: String?
     let thumbnailUpdatedAt: Int?
     let params: [DeviceParam]?
     
     // Streaming request data needed
-    let deviceSN: String?
-    let stationSN: String?
+    let serialNumber: String?
+    let stationSerialNumber: String?
     
     enum CodingKeys: String, CodingKey {
-        case deviceId = "device_id"
-        case deviceName = "device_name"
-        case deviceType = "device_type"
+        case id = "device_id"
+        case name = "device_name"
+        case type = "device_type"
         case thumbnail = "cover_path"
         case thumbnailUpdatedAt = "cover_time"
-        case deviceSN = "device_sn"
-        case stationSN = "station_sn"
+        case serialNumber = "device_sn"
+        case stationSerialNumber = "station_sn"
         case params = "params"
     }
 }

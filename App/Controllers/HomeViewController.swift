@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
             
             // distribute data to proper section
             for item in data {
-                if let type = item.deviceType {
+                if let type = item.type {
                     switch type {
                     case DeviceType.camera:
                         self?.cameras.append(item)
@@ -161,12 +161,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CameraCell", for: indexPath)
             let data = cameras[indexPath.row]
-            (cell as? CameraViewCell)?.setData(data: data)
+            (cell as? CameraViewCell)?.setData(device: data)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SensorCell", for: indexPath)
             let data = sensors[indexPath.row]
-            (cell as? SensorViewCell)?.setData(data: data)
+            (cell as? SensorViewCell)?.setData(device: data)
             return cell
         }
     }
