@@ -49,7 +49,7 @@ class UserAPIClient: APIClient {
         let jsonData = try? JSONEncoder().encode(loginData)
         
         request.httpMethod = "POST"
-//        request.setValue("PostmanRuntime/7.25.0", forHTTPHeaderField: "User-Agent")
+        request.setValue("EufySecurityDashboard/\(AppDelegate.shared.appVersion)", forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("keep-alive", forHTTPHeaderField: "Connection")
         request.httpBody = jsonData
@@ -85,7 +85,7 @@ class UserAPIClient: APIClient {
         guard let bearerToken = getBearer() else { return }
         
         request.httpMethod = "POST"
-//        request.setValue("PostmanRuntime/7.25.0", forHTTPHeaderField: "User-Agent")
+        request.setValue("EufySecurityDashboard/\(AppDelegate.shared.appVersion)", forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("keep-alive", forHTTPHeaderField: "Connection")
         request.setValue(bearerToken, forHTTPHeaderField: "x-auth-token")

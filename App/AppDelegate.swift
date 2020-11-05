@@ -31,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let shared = AppDelegate()
     
     var window: UIWindow?
+    
+    var appVersion: String {
+        get { Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String }
+    }
+    
+    var appBuild: String {
+        get { Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

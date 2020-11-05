@@ -29,6 +29,14 @@ class SettingsViewController: UIViewController {
         label.font = UIFont.font(ofSize: .headline, weight: .regular)
         return label
     }()
+    private lazy var versionLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.font = UIFont.font(ofSize: .subheadline, weight: .regular)
+        return label
+    }()
     
     override func viewDidLoad() {
         title = "Settings"
@@ -50,6 +58,7 @@ class SettingsViewController: UIViewController {
         view.addSubview(circularSlider)
         view.addSubview(refreshLabel)
         view.addSubview(userLabel)
+        view.addSubview(versionLabel)
         
         circularSlider.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -64,6 +73,11 @@ class SettingsViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(circularSlider.snp.bottom).offset(50)
         }
+        
+        versionLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(userLabel.snp.bottom).offset(10)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +86,7 @@ class SettingsViewController: UIViewController {
         updateStyles()
         
         userLabel.text = UserManager.current.name
+        versionLabel.text = "Version \(AppDelegate.shared.appVersion)"
         
         var refreshTime = 60
         if UserDefaults.standard.bool(forKey: "customRefresh") {
@@ -93,6 +108,7 @@ class SettingsViewController: UIViewController {
         circularSlider.trackColor = dark ? UIColor(white: 1, alpha: 0.3) : UIColor(white: 0, alpha: 0.3)
         refreshLabel.textColor = dark ? .white : .black
         userLabel.textColor = dark ? UIColor(white: 1, alpha: 0.5) : UIColor(white: 0, alpha: 0.5)
+        versionLabel.textColor = dark ? UIColor(white: 1, alpha: 0.5) : UIColor(white: 0, alpha: 0.5)
     }
     
     @objc func logOut() {
