@@ -200,7 +200,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1210;
-				ORGANIZATIONNAME = "Heavy Technologies, Inc.";
+				ORGANIZATIONNAME = "Alan Hamlett";
 				TargetAttributes = {
 					5C200E9923622B70007BEEB7 = {
 						CreatedOnToolsVersion = 11.0;

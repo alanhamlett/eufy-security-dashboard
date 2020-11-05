@@ -1,6 +1,8 @@
 //
-//  Created by James Mudgett on 10/24/19.
-//  Copyright © 2019 Heavy Technologies, Inc. All rights reserved.
+//  AppDelegate.swift
+//
+//  Created by James Mudgett on 10/29/20.
+//  Copyright © 2020 Alan Hamlett. All rights reserved.
 //
 
 import UIKit

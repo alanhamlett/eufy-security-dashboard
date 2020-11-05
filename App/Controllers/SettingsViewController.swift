@@ -1,9 +1,8 @@
 //
 //  SettingsViewController.swift
-//  Eufy
 //
 //  Created by James Mudgett on 11/3/20.
-//  Copyright © 2020 Heavy Technologies, Inc. All rights reserved.
+//  Copyright © 2020 Alan Hamlett. All rights reserved.
 //
 
 import Foundation
