@@ -1,6 +1,7 @@
 # Eufy Security Dashboard
 
 iOS app for Eufy Security cameras and door sensors.
+Available on the [App Store](https://apps.apple.com/us/app/eufy-security-dashboard/id1538641110).
 
 ![example](/example.png?raw=true)
 
