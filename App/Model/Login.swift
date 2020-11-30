@@ -20,10 +20,12 @@ struct LoginResponse: Codable {
 
 struct LoginResponseData: Codable {
     let authToken: String?
+    let tokenExpiresAt: Int?
     let domain: String?
     
     enum CodingKeys: String, CodingKey {
         case authToken = "auth_token"
+        case tokenExpiresAt = "token_expires_at"
         case domain = "domain"
     }
 }
