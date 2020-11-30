@@ -85,7 +85,7 @@ class SettingsViewController: UIViewController {
         
         updateStyles()
         
-        userLabel.text = UserManager.current.name
+        userLabel.text = UserManager.current.email
         versionLabel.text = "Version \(AppDelegate.shared.appVersion)"
         
         var refreshTime = 60

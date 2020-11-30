@@ -22,8 +22,10 @@ extension String {
 }
 
 class APIClient {
-    class func setBearer(response: LoginResponse) {
-        _ = KeychainWrapper.standard.set(response.data.authToken ?? "", forKey: BearerKeychainNameKey)
+    class func setBearer(response: LoginResponse, email: String? = nil, password: String? = nil) {
+        guard let token = response.data.authToken else { return }
+        
+        _ = KeychainWrapper.standard.set(token, forKey: BearerKeychainNameKey)
         _ = KeychainWrapper.standard.set(String(response.data.tokenExpiresAt ?? 0), forKey: ExpiresAtKeychainNameKey)
     }
     
@@ -33,9 +35,9 @@ class APIClient {
     
     class func getBearer() -> String? {
         guard
-            let expiresData = KeychainWrapper.standard.string(forKey: BearerKeychainNameKey),
+            let expiresData = KeychainWrapper.standard.string(forKey: ExpiresAtKeychainNameKey),
             let expiresAt = Int(expiresData),
-            expiresAt < Int(Date().timeIntervalSince1970)
+            expiresAt > Int(Date().timeIntervalSince1970)
         else { return nil }
         return KeychainWrapper.standard.string(forKey: BearerKeychainNameKey)
     }
@@ -89,15 +91,18 @@ class UserAPIClient: APIClient {
         var request = URLRequest(url: url)
         let session = URLSession.shared
         
-        guard let bearerToken = getBearer() else { return }
+        guard let token = getBearer() else {
+            AppDelegate.shared.logOut()
+            return
+        }
         
         request.httpMethod = "POST"
         request.setValue("EufySecurityDashboard/\(AppDelegate.shared.appVersion)", forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("keep-alive", forHTTPHeaderField: "Connection")
-        request.setValue(bearerToken, forHTTPHeaderField: "x-auth-token")
+        request.setValue(token, forHTTPHeaderField: "x-auth-token")
         
-        session.dataTask(with: request) {data, response, error in
+        session.dataTask(with: request) { data, response, error in
             if error != nil {
                 print(error!.localizedDescription)
                 return

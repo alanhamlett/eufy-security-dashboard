@@ -8,7 +8,7 @@
 import UIKit
 import SwiftKeychainWrapper
 
-let UserKeychainNameKey = "Email"
+let UserKeychainEmailKey = "Email"
 let UserKeychainPassKey = "Password"
 
 struct TokenData: Decodable {
@@ -32,9 +32,9 @@ class UserManager: NSObject {
         }
     }
     
-    var name: String? {
+    var email: String? {
         get {
-            return KeychainWrapper.standard.string(forKey: UserKeychainNameKey)
+            return KeychainWrapper.standard.string(forKey: UserKeychainEmailKey)
         }
     }
     
@@ -53,21 +53,20 @@ class UserManager: NSObject {
     }
     
     func setUser(email: String, password: String) -> Bool {
-        return KeychainWrapper.standard.set(email, forKey: UserKeychainNameKey) &&
+        return KeychainWrapper.standard.set(email, forKey: UserKeychainEmailKey) &&
             KeychainWrapper.standard.set(password, forKey: UserKeychainPassKey)
     }
     
     func reset() {
-        _ = KeychainWrapper.standard.removeObject(forKey: UserKeychainNameKey)
+        _ = KeychainWrapper.standard.removeObject(forKey: UserKeychainEmailKey)
         _ = KeychainWrapper.standard.removeObject(forKey: UserKeychainPassKey)
     }
     
     func login(completion: @escaping (Bool) -> Void) {
-        guard let email = KeychainWrapper.standard.string(forKey: UserKeychainNameKey), let password = KeychainWrapper.standard.string(forKey: UserKeychainPassKey) else {
+        guard let email = email, let password = password else {
             completion(false)
             return
         }
-        
         UserAPIClient.login(email: email, password: password) { result in
             completion(result != nil)
         }

@@ -15,8 +15,14 @@ class HomeViewController: UIViewController {
     
     @objc func getDeviceData() {
         UserAPIClient.devices { [weak self](response) in
+            guard let self = self else { return }
+            
             // API returns banned when access token is expired.
-            guard let response = response, response.banned == nil else {
+            guard
+                let response = response,
+                let data = response.data,
+                response.banned == nil
+            else {
                 // Trys to login again, if that fails then return to login screen.
                 UserManager.current.login { [weak self](completed) in
                     guard completed else {
@@ -27,19 +33,17 @@ class HomeViewController: UIViewController {
                 return
             }
 
-            guard let data = response.data else { return } // should probably print that no devices were loaded.
-
-            self?.cameras = []
-            self?.sensors = []
+            self.cameras = []
+            self.sensors = []
             
             // distribute data to proper section
             for item in data {
                 if let type = item.type {
                     switch type {
                     case DeviceType.camera:
-                        self?.cameras.append(item)
+                        self.cameras.append(item)
                     case DeviceType.door:
-                        self?.sensors.append(item)
+                        self.sensors.append(item)
                     case DeviceType.motion:
                         break
                     default:
@@ -48,8 +52,13 @@ class HomeViewController: UIViewController {
                 }
             }
             
+            if self.cameras.count == 0 && self.sensors.count == 0 {
+                // TODO: show error message instead of blank screen
+                print("No supported cameras nor door sensors found.")
+            }
+            
             DispatchQueue.main.async {
-                self?.collectionView.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }

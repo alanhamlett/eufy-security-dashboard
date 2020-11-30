@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         field.autocapitalizationType = .none
         field.tintColor = .white
         field.placeholder = "Email"
-        field.text = UserManager.current.name
+        field.text = UserManager.current.email
         field.layer.cornerRadius = 10
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor

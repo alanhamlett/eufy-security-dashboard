@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.shared.window = UIWindow(frame: UIScreen.main.bounds)
         AppDelegate.shared.window?.backgroundColor = .black
         
-        if UserManager.current.name != nil {
+        if UserManager.current.email != nil {
             authContinue()
         } else {
             authUser()

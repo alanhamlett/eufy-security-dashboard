@@ -99,8 +99,9 @@ class CameraViewCell: UICollectionViewCell {
                 {
                     result in
                     switch result {
-                    case .success(let value):
-                        print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                    case .success(_):
+                        // print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                        break
                     case .failure(let error):
                         print("Job failed: \(error.localizedDescription)")
                     }
