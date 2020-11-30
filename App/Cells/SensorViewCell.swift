@@ -38,10 +38,10 @@ class SensorViewCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1
         
         titleView.snp.makeConstraints {
-            $0.top.bottom.right.equalTo(0)
-            $0.left.equalTo(20)
-            $0.width.equalTo(UIScreen.main.bounds.width / 4 - 16 * 2)
-            $0.height.equalTo(60)
+            $0.top.bottom.right.equalTo(0).priority(.medium)
+            $0.left.equalTo(20).priority(.medium)
+            $0.width.equalTo(UIScreen.main.bounds.width / 4 - 16 * 2).priority(.required)
+            $0.height.equalTo(60).priority(.required)
         }
         
         openIcon.snp.makeConstraints {

@@ -40,9 +40,9 @@ class CameraViewCell: UICollectionViewCell {
         contentView.addSubview(thumbnail)
         
         thumbnail.snp.makeConstraints {
-            $0.top.left.right.equalTo(0)
-            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16)
-            $0.height.equalTo(UIScreen.main.bounds.height / 2.5)
+            $0.top.left.right.equalTo(0).priority(.medium)
+            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16).priority(.required)
+            $0.height.equalTo(UIScreen.main.bounds.height / 2.5).priority(.required)
         }
         
         titleView.snp.makeConstraints {
@@ -109,9 +109,9 @@ class CameraViewCell: UICollectionViewCell {
                 })
         
         thumbnail.snp.remakeConstraints {
-            $0.top.left.right.equalTo(0)
-            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16)
-            $0.height.equalTo(UIScreen.main.bounds.height / 2.5)
+            $0.top.left.right.equalTo(0).priority(.medium)
+            $0.width.equalTo(UIScreen.main.bounds.width / 2 - 16).priority(.required)
+            $0.height.equalTo(UIScreen.main.bounds.height / 2.5).priority(.required)
         }
     }
 }
