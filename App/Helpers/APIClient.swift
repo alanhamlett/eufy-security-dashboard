@@ -24,7 +24,7 @@ extension String {
 class APIClient {
     class func setBearer(response: LoginResponse) {
         _ = KeychainWrapper.standard.set(response.data.authToken ?? "", forKey: BearerKeychainNameKey)
-        _ = KeychainWrapper.standard.set(String(keyresponse.data.tokenExpiresAt ?? 0), forKey: ExpiresAtKeychainNameKey)
+        _ = KeychainWrapper.standard.set(String(response.data.tokenExpiresAt ?? 0), forKey: ExpiresAtKeychainNameKey)
     }
     
     class func setAccessDomain(response: LoginResponse) {
@@ -34,8 +34,8 @@ class APIClient {
     class func getBearer() -> String? {
         guard
             let expiresData = KeychainWrapper.standard.string(forKey: BearerKeychainNameKey),
-            let expiresAt = expiresData.toInt(),
-            expiresAt < Date().timeIntervalSince1970
+            let expiresAt = Int(expiresData),
+            expiresAt < Int(Date().timeIntervalSince1970)
         else { return nil }
         return KeychainWrapper.standard.string(forKey: BearerKeychainNameKey)
     }
