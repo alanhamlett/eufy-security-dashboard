@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
             for item in data {
                 if let type = item.type {
                     switch type {
-                    case DeviceType.camera:
+                    case DeviceType.camera, DeviceType.doorbell_camera:
                         self.cameras.append(item)
                     case DeviceType.door:
                         self.sensors.append(item)

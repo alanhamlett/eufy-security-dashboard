@@ -17,6 +17,7 @@ struct DevicesResponse: Codable {
 enum DeviceType: Int, Codable {
     case camera = 1
     case door = 2
+    case doorbell_camera = 5
     case motion = 10
     case other = 0
 
