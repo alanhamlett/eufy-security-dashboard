@@ -15,12 +15,31 @@ struct DevicesResponse: Codable {
 }
 
 enum DeviceType: Int, Codable {
+    case station = 0
     case camera = 1
     case door = 2
-    case floodlight_camera = 3
-    case doorbell_camera = 5
+    case floodlight = 3
+    case camera_e = 4
+    case doorbell = 5
+    case battery_doorbell = 7
+    case camera_2c = 8
+    case camera_2 = 9
     case motion = 10
-    case other = 0
+    case keypad = 11
+    case camera_2_pro = 14
+    case camera_2c_pro = 15
+    case battery_doorbell_2 = 16
+    case indoor_camera = 30
+    case solo_camera = 32
+    case solo_camera_pro = 33
+    case indoor_camera_1080 = 34
+    case indoor_pt_camera = 31
+    case indoor_pt_camera_1080 = 35
+    case lock_basic = 50
+    case lock_advanced = 51
+    case lock_basic_no_finger = 52
+    case lock_advanced_no_finger = 53
+    case other = -1
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

@@ -40,13 +40,35 @@ class HomeViewController: UIViewController {
             for item in data {
                 if let type = item.type {
                     switch type {
-                    case DeviceType.camera, DeviceType.doorbell_camera, DeviceType.floodlight_camera:
+                    case .camera,
+                         .floodlight,
+                         .camera_e,
+                         .doorbell,
+                         .battery_doorbell,
+                         .camera_2c,
+                         .camera_2,
+                         .camera_2_pro,
+                         .camera_2c_pro,
+                         .battery_doorbell_2,
+                         .indoor_camera,
+                         .solo_camera,
+                         .solo_camera_pro,
+                         .indoor_camera_1080,
+                         .indoor_pt_camera,
+                         .indoor_pt_camera_1080:
                         self.cameras.append(item)
-                    case DeviceType.door:
+                    case .door:
                         self.sensors.append(item)
-                    case DeviceType.motion:
+                    case .station,
+                         .motion,
+                         .keypad,
+                         .lock_basic,
+                         .lock_advanced,
+                         .lock_basic_no_finger,
+                         .lock_advanced_no_finger:
+                        // devices that don't support open/closed state nor camera thumbnail
                         break
-                    default:
+                    case DeviceType.other:
                         break
                     }
                 }
