@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         field.keyboardType = .emailAddress
         field.autocorrectionType = .no
         field.autocapitalizationType = .none
-        field.tintColor = .white
+        field.tintColor = .black
         field.placeholder = "Email"
         field.text = UserManager.current.email
         field.layer.cornerRadius = 10
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.autocapitalizationType = .none
         field.isSecureTextEntry = true
-        field.tintColor = .white
+        field.tintColor = .black
         field.placeholder = "Password"
         field.text = UserManager.current.password
         field.layer.cornerRadius = 10
