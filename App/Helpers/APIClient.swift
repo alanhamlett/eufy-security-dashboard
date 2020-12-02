@@ -34,11 +34,6 @@ class APIClient {
     }
     
     class func getBearer() -> String? {
-        guard
-            let expiresData = KeychainWrapper.standard.string(forKey: ExpiresAtKeychainNameKey),
-            let expiresAt = Int(expiresData),
-            expiresAt > Int(Date().timeIntervalSince1970)
-        else { return nil }
         return KeychainWrapper.standard.string(forKey: BearerKeychainNameKey)
     }
     
