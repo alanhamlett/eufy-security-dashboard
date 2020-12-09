@@ -12,6 +12,9 @@ class HomeViewController: UIViewController {
     
     private var cameras: [DevicesResponseData] = []
     private var sensors: [DevicesResponseData] = []
+    private var retries: Int = 0
+
+    private let maxRetries = 2
     
     @objc func getDeviceData() {
         UserAPIClient.devices { [weak self](response) in
@@ -25,8 +28,14 @@ class HomeViewController: UIViewController {
             else {
                 // Trys to login again, if that fails then return to login screen.
                 UserManager.current.login { [weak self](completed) in
+                    guard let self = self else { return }
                     guard completed else {
-                        self?.logOut()
+                        if self.retries > self.maxRetries {
+                            self.retries = 0
+                            self.logOut()
+                            return
+                        }
+                        self.retries += 1
                         return
                     }
                 }
