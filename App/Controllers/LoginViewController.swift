@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import SnapKit
+import Toaster
 
 class LoginViewController: UIViewController {
     fileprivate var bottomConstraint: Constraint!
@@ -132,7 +133,9 @@ class LoginViewController: UIViewController {
             if UserManager.current.setUser(email: email, password: password) {
                 UserManager.current.login { (completed) in
                     guard completed else {
-                        print("Could not complete user login.")
+                        ToastCenter.default.currentToast?.cancel()
+                        let toast = Toast(text: "Could not complete user login.")
+                        toast.show()
                         return
                     }
                     DispatchQueue.main.async {
@@ -162,6 +165,10 @@ class LoginViewController: UIViewController {
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             animation.values = [NSValue(caTransform3D: CATransform3DMakeRotation(shakeAngle, 0.0, 0.0, 1.0)), NSValue(caTransform3D: CATransform3DMakeRotation(-shakeAngle, 0.0, 0.0, 1.0))]
             emailInput.layer.add(animation, forKey: "input.shake")
+            
+            ToastCenter.default.currentToast?.cancel()
+            let toast = Toast(text: "Must enter email and password.")
+            toast.show()
         }
     }
 }

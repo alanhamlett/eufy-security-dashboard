@@ -257,6 +257,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftKeychainWrapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/HGCircularSlider.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Toaster.framework",
 			);
 			name = "Run Script";
 			outputFileListPaths = (

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Toaster
 
 class HomeViewController: UIViewController {
     
@@ -31,6 +32,10 @@ class HomeViewController: UIViewController {
                     guard let self = self else { return }
                     guard completed else {
                         if self.retries > self.maxRetries {
+                            ToastCenter.default.currentToast?.cancel()
+                            let toast = Toast(text: "Lost connection to Eufy servers and timed out.")
+                            toast.show()
+                            
                             self.retries = 0
                             self.logOut()
                             return
@@ -83,16 +88,22 @@ class HomeViewController: UIViewController {
                 }
             }
             
-            if self.cameras.count == 0 && self.sensors.count == 0 {
-                // TODO: show error message instead of blank screen
-                print("No supported cameras nor door sensors found.")
-            }
-            
             DispatchQueue.main.async {
+                self.errorLabel.isHidden = !(self.cameras.count == 0 && self.sensors.count == 0)
                 self.collectionView.reloadData()
             }
         }
     }
+    
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 21, weight: .medium)
+        label.textAlignment = .center
+        label.textColor = UIColor(white: 0.4, alpha: 1)
+        label.text = "No supported cameras nor door sensors found."
+        label.isHidden = true
+        return label
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -124,6 +135,11 @@ class HomeViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        view.addSubview(errorLabel)
+        errorLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
         
         getDeviceData()
