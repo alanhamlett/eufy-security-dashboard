@@ -39,6 +39,9 @@ enum DeviceType: Int, Codable {
     case lock_advanced = 51
     case lock_basic_no_finger = 52
     case lock_advanced_no_finger = 53
+    case solo_camera_spotlight_1080 = 60
+    case solo_camera_spotlight_2k = 61
+    case solo_camera_spotlight_solar = 62
     case other = -1
 
     init(from decoder: Decoder) throws {
@@ -63,7 +66,7 @@ struct DeviceParam: Codable {
     let type: DeviceParamType
     let value: String?
     let updatedAt: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case type = "param_type"
         case value = "param_value"
@@ -84,11 +87,11 @@ struct DevicesResponseData: Codable {
     let thumbnail: String?
     let thumbnailUpdatedAt: Int?
     let params: [DeviceParam]?
-    
+
     // Streaming request data needed
     let serialNumber: String?
     let stationSerialNumber: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "device_id"
         case name = "device_name"
