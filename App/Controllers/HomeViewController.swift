@@ -69,7 +69,10 @@ class HomeViewController: UIViewController {
                          .solo_camera_pro,
                          .indoor_camera_1080,
                          .indoor_pt_camera,
-                         .indoor_pt_camera_1080:
+                         .indoor_pt_camera_1080,
+                         .solo_camera_spotlight_1080,
+                         .solo_camera_spotlight_2k,
+                         .solo_camera_spotlight_solar:
                         self.cameras.append(item)
                     case .door:
                         self.sensors.append(item)
