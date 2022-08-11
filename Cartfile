@@ -1,5 +1,5 @@
 github "SnapKit/SnapKit"                "5.0.1"
 github "jrendel/SwiftKeychainWrapper"   "3.4.0"
-github "onevcat/Kingfisher"             "5.15.7"
+github "onevcat/Kingfisher"             "7.3.2"
 github "HamzaGhazouani/HGCircularSlider"
 github "devxoul/Toaster"
